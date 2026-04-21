@@ -1,96 +1,79 @@
+@import url('https://fonts.googleapis.com/css2?family=Archivo+Black&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@300;400;500&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
+/* === Warm Brutalist + Molten Orange Design System === */
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    /* Surfaces — deep charcoal with warm undertones */
+    --background: 24 12% 7%;          /* near-black, warm */
+    --foreground: 36 30% 92%;         /* warm cream */
 
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --surface-1: 24 14% 10%;
+    --surface-2: 22 12% 14%;
+    --surface-3: 20 10% 18%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --card: 24 14% 10%;
+    --card-foreground: 36 30% 92%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    --popover: 24 14% 10%;
+    --popover-foreground: 36 30% 92%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    /* Molten orange — the single accent */
+    --primary: 18 92% 55%;
+    --primary-foreground: 24 30% 8%;
+    --primary-glow: 22 100% 62%;
+    --ember: 12 88% 48%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    --secondary: 22 12% 14%;
+    --secondary-foreground: 36 30% 92%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    --muted: 22 10% 16%;
+    --muted-foreground: 30 12% 60%;
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    --accent: 18 92% 55%;
+    --accent-foreground: 24 30% 8%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --destructive: 0 70% 50%;
+    --destructive-foreground: 36 30% 92%;
 
-    --radius: 0.5rem;
+    --border: 24 12% 18%;
+    --input: 24 12% 18%;
+    --ring: 18 92% 55%;
 
-    --sidebar-background: 0 0% 98%;
+    --radius: 0.125rem;
 
-    --sidebar-foreground: 240 5.3% 26.1%;
+    /* Gradients */
+    --gradient-ember: radial-gradient(circle at 30% 20%, hsl(18 92% 55% / 0.35), transparent 60%);
+    --gradient-molten: linear-gradient(135deg, hsl(12 88% 48%), hsl(22 100% 62%));
+    --gradient-surface: linear-gradient(180deg, hsl(24 14% 10%), hsl(24 12% 7%));
+    --gradient-radial-glow: radial-gradient(ellipse at center, hsl(18 92% 55% / 0.18), transparent 70%);
 
-    --sidebar-primary: 240 5.9% 10%;
+    /* Shadows */
+    --shadow-ember: 0 20px 60px -20px hsl(18 92% 55% / 0.4);
+    --shadow-deep: 0 30px 80px -30px hsl(0 0% 0% / 0.8);
+    --shadow-card: 0 10px 40px -10px hsl(0 0% 0% / 0.6);
 
-    --sidebar-primary-foreground: 0 0% 98%;
+    /* Motion */
+    --ease-brutalist: cubic-bezier(0.83, 0, 0.17, 1);
 
-    --sidebar-accent: 240 4.8% 95.9%;
-
-    --sidebar-accent-foreground: 240 5.9% 10%;
-
-    --sidebar-border: 220 13% 91%;
-
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --sidebar-background: 24 14% 10%;
+    --sidebar-foreground: 36 30% 92%;
+    --sidebar-primary: 18 92% 55%;
+    --sidebar-primary-foreground: 24 30% 8%;
+    --sidebar-accent: 22 12% 14%;
+    --sidebar-accent-foreground: 36 30% 92%;
+    --sidebar-border: 24 12% 18%;
+    --sidebar-ring: 18 92% 55%;
   }
 
   .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
-
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
-
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
-
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
-
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
-
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
-
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
-
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
-
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    /* Same — site is dark by default */
+    --background: 24 12% 7%;
+    --foreground: 36 30% 92%;
   }
 }
 
@@ -99,7 +82,63 @@ All colors MUST be HSL.
     @apply border-border;
   }
 
+  html {
+    scroll-behavior: smooth;
+  }
+
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-sans antialiased;
+    font-feature-settings: "ss01", "cv11";
+  }
+
+  ::selection {
+    background: hsl(var(--primary));
+    color: hsl(var(--primary-foreground));
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar { width: 8px; height: 8px; }
+  ::-webkit-scrollbar-track { background: hsl(var(--background)); }
+  ::-webkit-scrollbar-thumb { background: hsl(var(--surface-3)); border-radius: 0; }
+  ::-webkit-scrollbar-thumb:hover { background: hsl(var(--primary)); }
+}
+
+@layer components {
+  .display-font {
+    font-family: 'Archivo Black', sans-serif;
+    letter-spacing: -0.04em;
+    line-height: 0.88;
+  }
+
+  .serif-font {
+    font-family: 'Instrument Serif', serif;
+    letter-spacing: -0.01em;
+  }
+
+  .mono-font {
+    font-family: 'JetBrains Mono', monospace;
+    letter-spacing: 0;
+  }
+
+  .hud-label {
+    @apply mono-font text-[10px] uppercase tracking-[0.2em] text-muted-foreground;
+  }
+
+  .hud-value {
+    @apply mono-font text-xs text-foreground;
+  }
+
+  .grain-overlay::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.06;
+    mix-blend-mode: overlay;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.6'/%3E%3C/svg%3E");
+  }
+
+  .ticker-line {
+    @apply h-px w-full bg-border;
   }
 }
