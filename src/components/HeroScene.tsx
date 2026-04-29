@@ -106,7 +106,7 @@ const Shell = () => {
 
   // Cache rest positions + a random phase per vertex so each node moves independently
   const { basePositions, phases } = useMemo(() => {
-    const geom = new THREE.IcosahedronGeometry(1, 4);
+    const geom = new THREE.IcosahedronGeometry(1, 1);
     const pos = geom.attributes.position as THREE.BufferAttribute;
     const base = new Float32Array(pos.array);
     const ph = new Float32Array(pos.count);
