@@ -192,8 +192,6 @@ const Index = () => {
               <ArrowUpRight className="w-6 h-6 md:w-8 md:h-8 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
             </a>
             <div className="flex gap-6 mono-font text-[11px] uppercase tracking-[0.25em]">
-              <a href="#" className="hover:text-primary transition-colors">Artstation ↗</a>
-              <a href="#" className="hover:text-primary transition-colors">GitHub ↗</a>
               <a href="#" className="hover:text-primary transition-colors">LinkedIn ↗</a>
             </div>
           </div>
