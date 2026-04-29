@@ -1,99 +1,160 @@
-import { useRef, useMemo } from "react";
-import { Canvas, useFrame } from "@react-three/fiber";
+import { useRef, useMemo, useEffect, useState } from "react";
+import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import { Float, Environment, Sparkles } from "@react-three/drei";
 import * as THREE from "three";
+
+// Shared low-poly material factory (flatShading gives the faceted look)
+const lowPolyMat = (color: string, opts: { emissive?: string; emissiveIntensity?: number; roughness?: number; metalness?: number } = {}) => (
+  <meshStandardMaterial
+    color={color}
+    emissive={opts.emissive ?? "#000000"}
+    emissiveIntensity={opts.emissiveIntensity ?? 0}
+    roughness={opts.roughness ?? 0.8}
+    metalness={opts.metalness ?? 0.05}
+    flatShading
+  />
+);
 
 const WavingMan = () => {
   const group = useRef<THREE.Group>(null);
   const rightArm = useRef<THREE.Group>(null);
   const leftArm = useRef<THREE.Group>(null);
-  const head = useRef<THREE.Mesh>(null);
+  const head = useRef<THREE.Group>(null);
+  const { viewport, pointer } = useThree();
 
   useFrame((state) => {
     const t = state.clock.getElapsedTime();
     if (group.current) {
-      group.current.rotation.y = Math.sin(t * 0.4) * 0.25;
+      group.current.rotation.y = Math.sin(t * 0.3) * 0.15;
       group.current.position.y = Math.sin(t * 1.2) * 0.05 - 0.2;
     }
     if (rightArm.current) {
-      // Wave: arm raised, hand swinging side to side
       rightArm.current.rotation.z = -2.0 + Math.sin(t * 6) * 0.35;
       rightArm.current.rotation.x = 0.2;
     }
     if (leftArm.current) {
       leftArm.current.rotation.z = 0.25;
     }
+    // Head tracks the mouse pointer (pointer is normalized -1..1)
     if (head.current) {
-      head.current.rotation.z = Math.sin(t * 6) * 0.05;
+      const targetY = pointer.x * 0.8;
+      const targetX = -pointer.y * 0.5;
+      head.current.rotation.y += (targetY - head.current.rotation.y) * 0.1;
+      head.current.rotation.x += (targetX - head.current.rotation.x) * 0.1;
     }
   });
 
-  const skin = (
-    <meshStandardMaterial
-      color="#ff7a3d"
-      emissive="#ff3a1a"
-      emissiveIntensity={0.35}
-      roughness={0.3}
-      metalness={0.6}
-    />
-  );
-
   return (
-    <Float speed={0.8} rotationIntensity={0.15} floatIntensity={0.3}>
+    <Float speed={0.8} rotationIntensity={0.1} floatIntensity={0.25}>
       <group ref={group} scale={1.1}>
-        {/* Head */}
-        <mesh ref={head} position={[0, 1.35, 0]} castShadow>
-          <sphereGeometry args={[0.32, 32, 32]} />
-          {skin}
-        </mesh>
+        {/* HEAD GROUP (tracks mouse) */}
+        <group ref={head} position={[0, 1.35, 0]}>
+          {/* Skull — low poly sphere */}
+          <mesh castShadow>
+            <icosahedronGeometry args={[0.32, 1]} />
+            {lowPolyMat("#e8a07a", { roughness: 0.6 })}
+          </mesh>
+          {/* Hair — top cap, slightly larger, dark */}
+          <mesh position={[0, 0.08, -0.02]} rotation={[0.15, 0, 0]}>
+            <sphereGeometry args={[0.345, 8, 6, 0, Math.PI * 2, 0, Math.PI * 0.55]} />
+            {lowPolyMat("#1a1410", { roughness: 0.9 })}
+          </mesh>
+          {/* Hair tuft / fringe */}
+          <mesh position={[0.08, 0.18, 0.22]} rotation={[0.4, -0.3, 0.2]}>
+            <tetrahedronGeometry args={[0.12, 0]} />
+            {lowPolyMat("#1a1410", { roughness: 0.9 })}
+          </mesh>
+          {/* Eyes */}
+          <mesh position={[0.11, 0.02, 0.27]}>
+            <sphereGeometry args={[0.035, 8, 8]} />
+            <meshStandardMaterial color="#0a0a0a" />
+          </mesh>
+          <mesh position={[-0.11, 0.02, 0.27]}>
+            <sphereGeometry args={[0.035, 8, 8]} />
+            <meshStandardMaterial color="#0a0a0a" />
+          </mesh>
+          {/* Nose */}
+          <mesh position={[0, -0.04, 0.3]} rotation={[0, 0, Math.PI]}>
+            <coneGeometry args={[0.04, 0.09, 4]} />
+            {lowPolyMat("#d4906a", { roughness: 0.6 })}
+          </mesh>
+        </group>
+
         {/* Neck */}
         <mesh position={[0, 1.05, 0]}>
-          <cylinderGeometry args={[0.09, 0.11, 0.15, 16]} />
-          {skin}
-        </mesh>
-        {/* Torso */}
-        <mesh position={[0, 0.5, 0]}>
-          <capsuleGeometry args={[0.32, 0.7, 8, 16]} />
-          {skin}
-        </mesh>
-        {/* Hips */}
-        <mesh position={[0, -0.15, 0]}>
-          <sphereGeometry args={[0.34, 16, 16]} />
-          {skin}
+          <cylinderGeometry args={[0.09, 0.11, 0.15, 6]} />
+          {lowPolyMat("#e8a07a", { roughness: 0.6 })}
         </mesh>
 
-        {/* Right arm (waving) — pivots from shoulder */}
-        <group ref={rightArm} position={[0.38, 0.85, 0]}>
-          <mesh position={[0, -0.4, 0]}>
-            <capsuleGeometry args={[0.09, 0.7, 8, 16]} />
-            {skin}
+        {/* Torso — shirt */}
+        <mesh position={[0, 0.5, 0]}>
+          <icosahedronGeometry args={[0.55, 1]} />
+          {lowPolyMat("#ff6a2a", { emissive: "#ff3a1a", emissiveIntensity: 0.25, roughness: 0.7 })}
+        </mesh>
+        {/* Shirt collar accent */}
+        <mesh position={[0, 0.95, 0.05]} rotation={[0.3, 0, 0]}>
+          <coneGeometry args={[0.18, 0.18, 4]} />
+          {lowPolyMat("#2a1a14", { roughness: 0.8 })}
+        </mesh>
+
+        {/* Hips / belt */}
+        <mesh position={[0, -0.05, 0]}>
+          <cylinderGeometry args={[0.36, 0.34, 0.14, 6]} />
+          {lowPolyMat("#1a1410", { roughness: 0.7, metalness: 0.3 })}
+        </mesh>
+
+        {/* Right arm (waving) — shirt sleeve + skin forearm */}
+        <group ref={rightArm} position={[0.42, 0.85, 0]}>
+          {/* Upper arm sleeve */}
+          <mesh position={[0, -0.22, 0]}>
+            <cylinderGeometry args={[0.11, 0.09, 0.4, 6]} />
+            {lowPolyMat("#ff6a2a", { emissive: "#ff3a1a", emissiveIntensity: 0.2, roughness: 0.7 })}
           </mesh>
-          <mesh position={[0, -0.85, 0]}>
-            <sphereGeometry args={[0.13, 16, 16]} />
-            {skin}
+          {/* Forearm skin */}
+          <mesh position={[0, -0.6, 0]}>
+            <cylinderGeometry args={[0.085, 0.075, 0.4, 6]} />
+            {lowPolyMat("#e8a07a", { roughness: 0.6 })}
+          </mesh>
+          {/* Hand */}
+          <mesh position={[0, -0.86, 0]}>
+            <icosahedronGeometry args={[0.13, 0]} />
+            {lowPolyMat("#e8a07a", { roughness: 0.6 })}
           </mesh>
         </group>
 
         {/* Left arm (resting) */}
-        <group ref={leftArm} position={[-0.38, 0.85, 0]}>
-          <mesh position={[0, -0.4, 0]}>
-            <capsuleGeometry args={[0.09, 0.7, 8, 16]} />
-            {skin}
+        <group ref={leftArm} position={[-0.42, 0.85, 0]}>
+          <mesh position={[0, -0.22, 0]}>
+            <cylinderGeometry args={[0.11, 0.09, 0.4, 6]} />
+            {lowPolyMat("#ff6a2a", { emissive: "#ff3a1a", emissiveIntensity: 0.2, roughness: 0.7 })}
           </mesh>
-          <mesh position={[0, -0.85, 0]}>
-            <sphereGeometry args={[0.12, 16, 16]} />
-            {skin}
+          <mesh position={[0, -0.6, 0]}>
+            <cylinderGeometry args={[0.085, 0.075, 0.4, 6]} />
+            {lowPolyMat("#e8a07a", { roughness: 0.6 })}
+          </mesh>
+          <mesh position={[0, -0.86, 0]}>
+            <icosahedronGeometry args={[0.12, 0]} />
+            {lowPolyMat("#e8a07a", { roughness: 0.6 })}
           </mesh>
         </group>
 
-        {/* Legs */}
-        <mesh position={[0.16, -0.85, 0]}>
-          <capsuleGeometry args={[0.11, 0.8, 8, 16]} />
-          {skin}
+        {/* Legs — pants */}
+        <mesh position={[0.18, -0.55, 0]}>
+          <cylinderGeometry args={[0.13, 0.11, 0.7, 6]} />
+          {lowPolyMat("#2a2a3a", { roughness: 0.85 })}
         </mesh>
-        <mesh position={[-0.16, -0.85, 0]}>
-          <capsuleGeometry args={[0.11, 0.8, 8, 16]} />
-          {skin}
+        <mesh position={[-0.18, -0.55, 0]}>
+          <cylinderGeometry args={[0.13, 0.11, 0.7, 6]} />
+          {lowPolyMat("#2a2a3a", { roughness: 0.85 })}
+        </mesh>
+        {/* Shoes */}
+        <mesh position={[0.18, -0.96, 0.06]}>
+          <boxGeometry args={[0.18, 0.12, 0.3]} />
+          {lowPolyMat("#0d0d0d", { roughness: 0.6 })}
+        </mesh>
+        <mesh position={[-0.18, -0.96, 0.06]}>
+          <boxGeometry args={[0.18, 0.12, 0.3]} />
+          {lowPolyMat("#0d0d0d", { roughness: 0.6 })}
         </mesh>
       </group>
     </Float>
@@ -104,7 +165,6 @@ const Shell = () => {
   const mesh = useRef<THREE.Mesh>(null);
   const geomRef = useRef<THREE.IcosahedronGeometry>(null);
 
-  // Cache rest positions + one phase per shared node, so adjacent faces stay welded together
   const { basePositions, nodePhases } = useMemo(() => {
     const geom = new THREE.IcosahedronGeometry(1, 1);
     const pos = geom.attributes.position as THREE.BufferAttribute;
@@ -135,7 +195,6 @@ const Shell = () => {
       const bx = basePositions[ix];
       const by = basePositions[ix + 1];
       const bz = basePositions[ix + 2];
-      // Wobble is shared by duplicate vertices at the same node, keeping faces connected
       const wobble =
         0.06 * Math.sin(t * 1.4 + nodePhases[i]) +
         0.03 * Math.sin(t * 2.6 + nodePhases[i] * 1.7);
@@ -182,6 +241,7 @@ const FloatingShards = () => {
               emissive="#ff6a2a"
               emissiveIntensity={0.6}
               roughness={0.4}
+              flatShading
             />
           </mesh>
         </Float>
@@ -200,7 +260,7 @@ export const HeroScene = () => {
       <color attach="background" args={["#13100e"]} />
       <fog attach="fog" args={["#13100e", 6, 14]} />
 
-      <ambientLight intensity={0.15} />
+      <ambientLight intensity={0.2} />
       <directionalLight position={[5, 3, 5]} intensity={1.2} color="#ff7a3d" />
       <pointLight position={[-4, -2, -2]} intensity={1.5} color="#ff3a1a" />
       <pointLight position={[3, 4, 2]} intensity={0.6} color="#ffd9b3" />
