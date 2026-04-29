@@ -70,8 +70,10 @@ const Index = () => {
         </div>
 
         {/* HUD corners */}
-        <div className="absolute top-24 left-8 md:left-16 mono-font text-[10px] uppercase tracking-[0.25em] text-foreground/50 z-10">
-          /001 — index
+        <div className="absolute top-24 left-8 md:left-16 z-10">
+          <span className="mono-font text-[9px] uppercase tracking-[0.2em] text-foreground/60 border border-border/60 bg-background/40 backdrop-blur-sm px-2 py-1">
+            /001 — index
+          </span>
         </div>
         <div className="absolute top-24 right-8 md:right-16 mono-font text-[10px] uppercase tracking-[0.25em] text-foreground/50 z-10 text-right">
           rt: 60fps<br />pass: forward+
