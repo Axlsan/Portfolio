@@ -102,16 +102,50 @@ const WavingMan = () => {
 
 const Shell = () => {
   const mesh = useRef<THREE.Mesh>(null);
+  const geomRef = useRef<THREE.IcosahedronGeometry>(null);
+
+  // Cache rest positions + a random phase per vertex so each node moves independently
+  const { basePositions, phases } = useMemo(() => {
+    const geom = new THREE.IcosahedronGeometry(1, 4);
+    const pos = geom.attributes.position as THREE.BufferAttribute;
+    const base = new Float32Array(pos.array);
+    const ph = new Float32Array(pos.count);
+    for (let i = 0; i < pos.count; i++) ph[i] = Math.random() * Math.PI * 2;
+    geom.dispose();
+    return { basePositions: base, phases: ph };
+  }, []);
+
   useFrame((state) => {
-    if (!mesh.current) return;
     const t = state.clock.getElapsedTime();
-    mesh.current.rotation.y = -t * 0.08;
-    mesh.current.rotation.z = t * 0.05;
+    if (mesh.current) {
+      mesh.current.rotation.y = -t * 0.08;
+      mesh.current.rotation.z = t * 0.05;
+    }
+    const geom = geomRef.current;
+    if (!geom) return;
+    const pos = geom.attributes.position as THREE.BufferAttribute;
+    for (let i = 0; i < pos.count; i++) {
+      const ix = i * 3;
+      const bx = basePositions[ix];
+      const by = basePositions[ix + 1];
+      const bz = basePositions[ix + 2];
+      const len = Math.sqrt(bx * bx + by * by + bz * bz) || 1;
+      // Independent radial wobble per vertex
+      const wobble =
+        0.12 * Math.sin(t * 1.6 + phases[i]) +
+        0.06 * Math.sin(t * 3.1 + phases[i] * 1.7);
+      const k = 1 + wobble;
+      pos.array[ix] = bx * k;
+      pos.array[ix + 1] = by * k;
+      pos.array[ix + 2] = bz * k;
+    }
+    pos.needsUpdate = true;
   });
+
   return (
     <mesh ref={mesh} scale={2.6}>
-      <icosahedronGeometry args={[1, 1]} />
-      <meshBasicMaterial color="#ff8a4d" wireframe transparent opacity={0.18} />
+      <icosahedronGeometry ref={geomRef} args={[1, 4]} />
+      <meshBasicMaterial color="#ff8a4d" wireframe transparent opacity={0.22} />
     </mesh>
   );
 };
