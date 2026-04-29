@@ -36,50 +36,52 @@ const Index = () => {
       </header>
 
       {/* === HERO === */}
-      <section id="top" className="relative h-screen w-full overflow-hidden grain-overlay">
-        <div className="absolute inset-0">
-          <Suspense fallback={<div className="absolute inset-0 bg-background" />}>
-            <HeroScene />
-          </Suspense>
-        </div>
+      <section id="top" className="relative pt-24 pb-12 px-8 md:px-16">
+        <div className="relative h-[80vh] w-full overflow-hidden grain-overlay border border-border">
+          <div className="absolute inset-0">
+            <Suspense fallback={<div className="absolute inset-0 bg-background" />}>
+              <HeroScene />
+            </Suspense>
+          </div>
 
-        {/* gradient veil */}
-        <div className="absolute inset-0 bg-gradient-to-b from-background/40 via-transparent to-background pointer-events-none" />
+          {/* gradient veil */}
+          <div className="absolute inset-0 bg-gradient-to-b from-background/40 via-transparent to-background pointer-events-none" />
 
-        {/* Hero copy */}
-        <div className="relative z-10 h-full flex flex-col justify-end px-8 md:px-16 pb-20 md:pb-24 pointer-events-none">
-          <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, ease: [0.83, 0, 0.17, 1] }}
-            className="max-w-5xl"
-          >
-            <div className="hud-label mb-6 flex items-center gap-3">
-              <span className="w-8 h-px bg-primary" />
-              Technical Artist · Berlin / Remote
-            </div>
-            <h1 className="display-font text-[clamp(3rem,11vw,11rem)] leading-[0.85]">
-              FORGING<br />
-              <span className="serif-font italic font-normal text-primary">realtime</span> WORLDS
-            </h1>
-            <p className="mt-8 max-w-xl serif-font italic text-xl md:text-2xl text-foreground/80 leading-snug">
-              Shaders, simulation pipelines and tooling for studios that ship.
-              Eight years between the artist and the engine.
-            </p>
-          </motion.div>
-        </div>
+          {/* Hero copy */}
+          <div className="relative z-10 h-full flex flex-col justify-end px-6 md:px-10 pb-12 md:pb-16 pointer-events-none">
+            <motion.div
+              initial={{ opacity: 0, y: 40 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 1, ease: [0.83, 0, 0.17, 1] }}
+              className="max-w-5xl"
+            >
+              <div className="hud-label mb-6 flex items-center gap-3">
+                <span className="w-8 h-px bg-primary" />
+                Technical Artist · Berlin / Remote
+              </div>
+              <h1 className="display-font text-[clamp(2.5rem,8vw,8rem)] leading-[0.85]">
+                FORGING<br />
+                <span className="serif-font italic font-normal text-primary">realtime</span> WORLDS
+              </h1>
+              <p className="mt-6 max-w-xl serif-font italic text-lg md:text-xl text-foreground/80 leading-snug">
+                Shaders, simulation pipelines and tooling for studios that ship.
+                Eight years between the artist and the engine.
+              </p>
+            </motion.div>
+          </div>
 
-        {/* HUD corners */}
-        <div className="absolute top-24 left-8 md:left-16 z-10">
-          <span className="mono-font text-[9px] uppercase tracking-[0.2em] text-foreground/60 border border-border/60 bg-background/40 backdrop-blur-sm px-2 py-1">
-            /001 — index
-          </span>
-        </div>
-        <div className="absolute top-24 right-8 md:right-16 mono-font text-[10px] uppercase tracking-[0.25em] text-foreground/50 z-10 text-right">
-          rt: 60fps<br />pass: forward+
-        </div>
-        <div className="absolute bottom-6 right-8 md:right-16 mono-font text-[10px] uppercase tracking-[0.25em] text-foreground/50 z-10">
-          scroll ↓
+          {/* HUD corners */}
+          <div className="absolute top-4 left-4 md:top-6 md:left-6 z-10">
+            <span className="mono-font text-[9px] uppercase tracking-[0.2em] text-foreground/60 border border-border/60 bg-background/40 backdrop-blur-sm px-2 py-1">
+              /001 — index
+            </span>
+          </div>
+          <div className="absolute top-4 right-4 md:top-6 md:right-6 mono-font text-[10px] uppercase tracking-[0.25em] text-foreground/50 z-10 text-right">
+            rt: 60fps<br />pass: forward+
+          </div>
+          <div className="absolute bottom-4 right-4 md:bottom-6 md:right-6 mono-font text-[10px] uppercase tracking-[0.25em] text-foreground/50 z-10">
+            scroll ↓
+          </div>
         </div>
       </section>
 
