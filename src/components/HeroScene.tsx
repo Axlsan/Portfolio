@@ -1,31 +1,101 @@
 import { useRef, useMemo } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
-import { Float, Environment, MeshDistortMaterial, Sparkles } from "@react-three/drei";
+import { Float, Environment, Sparkles } from "@react-three/drei";
 import * as THREE from "three";
 
-const MoltenBlob = () => {
-  const mesh = useRef<THREE.Mesh>(null);
+const WavingMan = () => {
+  const group = useRef<THREE.Group>(null);
+  const rightArm = useRef<THREE.Group>(null);
+  const leftArm = useRef<THREE.Group>(null);
+  const head = useRef<THREE.Mesh>(null);
+
   useFrame((state) => {
-    if (!mesh.current) return;
     const t = state.clock.getElapsedTime();
-    mesh.current.rotation.x = t * 0.15;
-    mesh.current.rotation.y = t * 0.2;
+    if (group.current) {
+      group.current.rotation.y = Math.sin(t * 0.4) * 0.25;
+      group.current.position.y = Math.sin(t * 1.2) * 0.05 - 0.2;
+    }
+    if (rightArm.current) {
+      // Wave: arm raised, hand swinging side to side
+      rightArm.current.rotation.z = -2.0 + Math.sin(t * 6) * 0.35;
+      rightArm.current.rotation.x = 0.2;
+    }
+    if (leftArm.current) {
+      leftArm.current.rotation.z = 0.25;
+    }
+    if (head.current) {
+      head.current.rotation.z = Math.sin(t * 6) * 0.05;
+    }
   });
 
+  const skin = (
+    <meshStandardMaterial
+      color="#ff7a3d"
+      emissive="#ff3a1a"
+      emissiveIntensity={0.35}
+      roughness={0.3}
+      metalness={0.6}
+    />
+  );
+
   return (
-    <Float speed={1.2} rotationIntensity={0.4} floatIntensity={0.6}>
-      <mesh ref={mesh} scale={1.6}>
-        <icosahedronGeometry args={[1, 32]} />
-        <MeshDistortMaterial
-          color="#ff5722"
-          emissive="#ff7a3d"
-          emissiveIntensity={0.4}
-          roughness={0.15}
-          metalness={0.85}
-          distort={0.45}
-          speed={1.5}
-        />
-      </mesh>
+    <Float speed={0.8} rotationIntensity={0.15} floatIntensity={0.3}>
+      <group ref={group} scale={1.1}>
+        {/* Head */}
+        <mesh ref={head} position={[0, 1.35, 0]} castShadow>
+          <sphereGeometry args={[0.32, 32, 32]} />
+          {skin}
+        </mesh>
+        {/* Neck */}
+        <mesh position={[0, 1.05, 0]}>
+          <cylinderGeometry args={[0.09, 0.11, 0.15, 16]} />
+          {skin}
+        </mesh>
+        {/* Torso */}
+        <mesh position={[0, 0.5, 0]}>
+          <capsuleGeometry args={[0.32, 0.7, 8, 16]} />
+          {skin}
+        </mesh>
+        {/* Hips */}
+        <mesh position={[0, -0.15, 0]}>
+          <sphereGeometry args={[0.34, 16, 16]} />
+          {skin}
+        </mesh>
+
+        {/* Right arm (waving) — pivots from shoulder */}
+        <group ref={rightArm} position={[0.38, 0.85, 0]}>
+          <mesh position={[0, -0.4, 0]}>
+            <capsuleGeometry args={[0.09, 0.7, 8, 16]} />
+            {skin}
+          </mesh>
+          <mesh position={[0, -0.85, 0]}>
+            <sphereGeometry args={[0.13, 16, 16]} />
+            {skin}
+          </mesh>
+        </group>
+
+        {/* Left arm (resting) */}
+        <group ref={leftArm} position={[-0.38, 0.85, 0]}>
+          <mesh position={[0, -0.4, 0]}>
+            <capsuleGeometry args={[0.09, 0.7, 8, 16]} />
+            {skin}
+          </mesh>
+          <mesh position={[0, -0.85, 0]}>
+            <sphereGeometry args={[0.12, 16, 16]} />
+            {skin}
+          </mesh>
+        </group>
+
+        {/* Legs */}
+        <mesh position={[0.16, -0.85, 0]}>
+          <capsuleGeometry args={[0.11, 0.8, 8, 16]} />
+          {skin}
+        </mesh>
+        <mesh position={[-0.16, -0.85, 0]}>
+          <capsuleGeometry args={[0.11, 0.8, 8, 16]} />
+          {skin}
+        </mesh>
+      </group>
     </Float>
   );
 };
@@ -96,7 +166,7 @@ export const HeroScene = () => {
       <pointLight position={[-4, -2, -2]} intensity={1.5} color="#ff3a1a" />
       <pointLight position={[3, 4, 2]} intensity={0.6} color="#ffd9b3" />
 
-      <MoltenBlob />
+      <WavingMan />
       <Shell />
       <FloatingShards />
 
