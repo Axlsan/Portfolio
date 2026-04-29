@@ -16,7 +16,7 @@ const Index = () => {
     <div className="min-h-screen bg-background text-foreground overflow-x-hidden">
       {/* === NAV === */}
       <header className="fixed top-0 left-0 right-0 z-40 border-b border-border/60 bg-background/70 backdrop-blur-md">
-        <div className="flex items-center justify-between px-5 md:px-8 py-4">
+        <div className="flex items-center justify-between px-8 md:px-16 py-4">
           <a href="#top" className="flex items-center gap-3">
             <span className="w-2 h-2 bg-primary animate-pulse-ember" />
             <span className="display-font text-sm tracking-tight">KAI / FORGE</span>
@@ -47,7 +47,7 @@ const Index = () => {
         <div className="absolute inset-0 bg-gradient-to-b from-background/40 via-transparent to-background pointer-events-none" />
 
         {/* Hero copy */}
-        <div className="relative z-10 h-full flex flex-col justify-end px-5 md:px-8 pb-20 md:pb-24 pointer-events-none">
+        <div className="relative z-10 h-full flex flex-col justify-end px-8 md:px-16 pb-20 md:pb-24 pointer-events-none">
           <motion.div
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
@@ -70,13 +70,13 @@ const Index = () => {
         </div>
 
         {/* HUD corners */}
-        <div className="absolute top-24 left-5 md:left-8 mono-font text-[10px] uppercase tracking-[0.25em] text-foreground/50 z-10">
+        <div className="absolute top-24 left-8 md:left-16 mono-font text-[10px] uppercase tracking-[0.25em] text-foreground/50 z-10">
           /001 — index
         </div>
-        <div className="absolute top-24 right-5 md:right-8 mono-font text-[10px] uppercase tracking-[0.25em] text-foreground/50 z-10 text-right">
+        <div className="absolute top-24 right-8 md:right-16 mono-font text-[10px] uppercase tracking-[0.25em] text-foreground/50 z-10 text-right">
           rt: 60fps<br />pass: forward+
         </div>
-        <div className="absolute bottom-6 right-5 md:right-8 mono-font text-[10px] uppercase tracking-[0.25em] text-foreground/50 z-10">
+        <div className="absolute bottom-6 right-8 md:right-16 mono-font text-[10px] uppercase tracking-[0.25em] text-foreground/50 z-10">
           scroll ↓
         </div>
       </section>
@@ -99,7 +99,7 @@ const Index = () => {
       </section>
 
       {/* === WORK === */}
-      <section id="work" className="px-5 md:px-8 py-24 md:py-32 relative">
+      <section id="work" className="px-8 md:px-16 py-24 md:py-32 relative">
         <div className="flex items-end justify-between mb-12 md:mb-20">
           <div>
             <div className="hud-label mb-4">/002 — selected work</div>
@@ -122,7 +122,7 @@ const Index = () => {
       </section>
 
       {/* === ABOUT === */}
-      <section id="about" className="border-t border-border bg-surface-1 px-5 md:px-8 py-24 md:py-32">
+      <section id="about" className="border-t border-border bg-surface-1 px-8 md:px-16 py-24 md:py-32">
         <div className="grid md:grid-cols-12 gap-8 md:gap-12">
           <div className="md:col-span-4">
             <div className="hud-label mb-4">/003 — bio</div>
@@ -170,7 +170,7 @@ const Index = () => {
       </section>
 
       {/* === CONTACT === */}
-      <section id="contact" className="relative px-5 md:px-8 py-32 md:py-44 overflow-hidden">
+      <section id="contact" className="relative px-8 md:px-16 py-32 md:py-44 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-radial-glow opacity-60 pointer-events-none" />
         <div className="relative max-w-5xl">
           <div className="hud-label mb-6">/004 — contact</div>
@@ -197,7 +197,7 @@ const Index = () => {
       </section>
 
       {/* === FOOTER === */}
-      <footer className="border-t border-border px-5 md:px-8 py-6 flex flex-col md:flex-row justify-between gap-3 mono-font text-[10px] uppercase tracking-[0.25em] text-foreground/50">
+      <footer className="border-t border-border px-8 md:px-16 py-6 flex flex-col md:flex-row justify-between gap-3 mono-font text-[10px] uppercase tracking-[0.25em] text-foreground/50">
         <span>© 2024 Kai Forge — built in three.js</span>
         <span>v1.4.2 · last forged 2024.06</span>
       </footer>
