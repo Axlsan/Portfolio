@@ -20,7 +20,46 @@ const WavingMan = () => {
   const rightArm = useRef<THREE.Group>(null);
   const leftArm = useRef<THREE.Group>(null);
   const head = useRef<THREE.Group>(null);
-  const { viewport, pointer } = useThree();
+  const { pointer, gl } = useThree();
+
+  // Drag state for the head
+  const dragging = useRef(false);
+  const lastPointer = useRef({ x: 0, y: 0 });
+  const dragRot = useRef({ x: 0, y: 0 });
+
+  useEffect(() => {
+    const dom = gl.domElement;
+    const onDown = (e: PointerEvent) => {
+      dragging.current = true;
+      lastPointer.current = { x: e.clientX, y: e.clientY };
+      dom.style.cursor = "grabbing";
+      (e.target as Element).setPointerCapture?.(e.pointerId);
+    };
+    const onMove = (e: PointerEvent) => {
+      if (!dragging.current) return;
+      const dx = e.clientX - lastPointer.current.x;
+      const dy = e.clientY - lastPointer.current.y;
+      lastPointer.current = { x: e.clientX, y: e.clientY };
+      dragRot.current.y += dx * 0.01;
+      dragRot.current.x += dy * 0.01;
+      // clamp so the head doesn't spin absurdly
+      dragRot.current.x = Math.max(-1.0, Math.min(1.0, dragRot.current.x));
+      dragRot.current.y = Math.max(-1.6, Math.min(1.6, dragRot.current.y));
+    };
+    const onUp = () => {
+      dragging.current = false;
+      dom.style.cursor = "grab";
+    };
+    dom.style.cursor = "grab";
+    dom.addEventListener("pointerdown", onDown);
+    window.addEventListener("pointermove", onMove);
+    window.addEventListener("pointerup", onUp);
+    return () => {
+      dom.removeEventListener("pointerdown", onDown);
+      window.removeEventListener("pointermove", onMove);
+      window.removeEventListener("pointerup", onUp);
+    };
+  }, [gl]);
 
   useFrame((state) => {
     const t = state.clock.getElapsedTime();
@@ -28,19 +67,21 @@ const WavingMan = () => {
       group.current.rotation.y = Math.sin(t * 0.3) * 0.15;
       group.current.position.y = Math.sin(t * 1.2) * 0.05 - 0.2;
     }
+    // Right arm raised waving — pivots ABOVE the shoulder so the hand is up high & out to the side, clear of the head
     if (rightArm.current) {
-      rightArm.current.rotation.z = -2.0 + Math.sin(t * 6) * 0.35;
-      rightArm.current.rotation.x = 0.2;
+      // base rotation tilts the arm outward (positive z rotates the down-hanging arm to the character's right)
+      rightArm.current.rotation.z = 2.3 + Math.sin(t * 6) * 0.25;
+      rightArm.current.rotation.x = 0.1;
     }
     if (leftArm.current) {
-      leftArm.current.rotation.z = 0.05 + Math.sin(t * 1.2) * 0.04;
+      leftArm.current.rotation.z = -0.05 - Math.sin(t * 1.2) * 0.04;
     }
-    // Head tracks the mouse pointer (pointer is normalized -1..1)
+    // Head: blend mouse-tracking with drag offset
     if (head.current) {
-      const targetY = pointer.x * 0.8;
-      const targetX = -pointer.y * 0.5;
-      head.current.rotation.y += (targetY - head.current.rotation.y) * 0.1;
-      head.current.rotation.x += (targetX - head.current.rotation.x) * 0.1;
+      const targetY = dragRot.current.y + (dragging.current ? 0 : pointer.x * 0.6);
+      const targetX = dragRot.current.x + (dragging.current ? 0 : -pointer.y * 0.4);
+      head.current.rotation.y += (targetY - head.current.rotation.y) * 0.15;
+      head.current.rotation.x += (targetX - head.current.rotation.x) * 0.15;
     }
   });
 
