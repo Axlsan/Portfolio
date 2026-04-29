@@ -144,8 +144,8 @@ const Shell = () => {
 
   return (
     <mesh ref={mesh} scale={2.6}>
-      <icosahedronGeometry ref={geomRef} args={[1, 4]} />
-      <meshBasicMaterial color="#ff8a4d" wireframe transparent opacity={0.22} />
+      <icosahedronGeometry ref={geomRef} args={[1, 1]} />
+      <meshBasicMaterial color="#ff8a4d" wireframe transparent opacity={0.18} />
     </mesh>
   );
 };
