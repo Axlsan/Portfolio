@@ -191,9 +191,12 @@ const Index = () => {
               hello@kaiforge.studio
               <ArrowUpRight className="w-6 h-6 md:w-8 md:h-8 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
             </a>
-            <div className="flex gap-6 mono-font text-[11px] uppercase tracking-[0.25em]">
-              <a href="#" className="hover:text-primary transition-colors">LinkedIn ↗</a>
-            </div>
+            <a
+              href="#"
+              className="mono-font text-[11px] uppercase tracking-[0.25em] text-foreground/70 hover:text-primary transition-colors self-end"
+            >
+              LinkedIn ↗
+            </a>
           </div>
         </div>
       </section>
