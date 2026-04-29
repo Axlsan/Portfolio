@@ -1,6 +1,6 @@
 import { useRef, useMemo } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
-import { Float, Environment, MeshDistortMaterial, Sparkles } from "@react-three/drei";
+import { Float, Environment, Sparkles } from "@react-three/drei";
 import * as THREE from "three";
 
 const WavingMan = () => {
@@ -166,7 +166,7 @@ export const HeroScene = () => {
       <pointLight position={[-4, -2, -2]} intensity={1.5} color="#ff3a1a" />
       <pointLight position={[3, 4, 2]} intensity={0.6} color="#ffd9b3" />
 
-      <MoltenBlob />
+      <WavingMan />
       <Shell />
       <FloatingShards />
 
