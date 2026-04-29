@@ -33,7 +33,7 @@ const WavingMan = () => {
       rightArm.current.rotation.x = 0.2;
     }
     if (leftArm.current) {
-      leftArm.current.rotation.z = 0.25;
+      leftArm.current.rotation.z = 0.05 + Math.sin(t * 1.2) * 0.04;
     }
     // Head tracks the mouse pointer (pointer is normalized -1..1)
     if (head.current) {
