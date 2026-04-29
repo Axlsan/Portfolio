@@ -106,7 +106,7 @@ const Shell = () => {
 
   // Cache rest positions + a random phase per vertex so each node moves independently
   const { basePositions, phases } = useMemo(() => {
-    const geom = new THREE.IcosahedronGeometry(1, 4);
+    const geom = new THREE.IcosahedronGeometry(1, 1);
     const pos = geom.attributes.position as THREE.BufferAttribute;
     const base = new Float32Array(pos.array);
     const ph = new Float32Array(pos.count);
@@ -132,8 +132,8 @@ const Shell = () => {
       const len = Math.sqrt(bx * bx + by * by + bz * bz) || 1;
       // Independent radial wobble per vertex
       const wobble =
-        0.12 * Math.sin(t * 1.6 + phases[i]) +
-        0.06 * Math.sin(t * 3.1 + phases[i] * 1.7);
+        0.06 * Math.sin(t * 1.4 + phases[i]) +
+        0.03 * Math.sin(t * 2.6 + phases[i] * 1.7);
       const k = 1 + wobble;
       pos.array[ix] = bx * k;
       pos.array[ix + 1] = by * k;
@@ -144,8 +144,8 @@ const Shell = () => {
 
   return (
     <mesh ref={mesh} scale={2.6}>
-      <icosahedronGeometry ref={geomRef} args={[1, 4]} />
-      <meshBasicMaterial color="#ff8a4d" wireframe transparent opacity={0.22} />
+      <icosahedronGeometry ref={geomRef} args={[1, 1]} />
+      <meshBasicMaterial color="#ff8a4d" wireframe transparent opacity={0.18} />
     </mesh>
   );
 };
