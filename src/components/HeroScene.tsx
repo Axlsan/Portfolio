@@ -132,8 +132,8 @@ const Shell = () => {
       const len = Math.sqrt(bx * bx + by * by + bz * bz) || 1;
       // Independent radial wobble per vertex
       const wobble =
-        0.12 * Math.sin(t * 1.6 + phases[i]) +
-        0.06 * Math.sin(t * 3.1 + phases[i] * 1.7);
+        0.06 * Math.sin(t * 1.4 + phases[i]) +
+        0.03 * Math.sin(t * 2.6 + phases[i] * 1.7);
       const k = 1 + wobble;
       pos.array[ix] = bx * k;
       pos.array[ix + 1] = by * k;
