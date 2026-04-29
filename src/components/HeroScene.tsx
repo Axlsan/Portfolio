@@ -104,15 +104,21 @@ const Shell = () => {
   const mesh = useRef<THREE.Mesh>(null);
   const geomRef = useRef<THREE.IcosahedronGeometry>(null);
 
-  // Cache rest positions + a random phase per vertex so each node moves independently
-  const { basePositions, phases } = useMemo(() => {
+  // Cache rest positions + one phase per shared node, so adjacent faces stay welded together
+  const { basePositions, nodePhases } = useMemo(() => {
     const geom = new THREE.IcosahedronGeometry(1, 1);
     const pos = geom.attributes.position as THREE.BufferAttribute;
     const base = new Float32Array(pos.array);
+    const phasesByKey = new Map<string, number>();
     const ph = new Float32Array(pos.count);
-    for (let i = 0; i < pos.count; i++) ph[i] = Math.random() * Math.PI * 2;
+    for (let i = 0; i < pos.count; i++) {
+      const ix = i * 3;
+      const key = `${base[ix].toFixed(5)},${base[ix + 1].toFixed(5)},${base[ix + 2].toFixed(5)}`;
+      if (!phasesByKey.has(key)) phasesByKey.set(key, Math.random() * Math.PI * 2);
+      ph[i] = phasesByKey.get(key)!;
+    }
     geom.dispose();
-    return { basePositions: base, phases: ph };
+    return { basePositions: base, nodePhases: ph };
   }, []);
 
   useFrame((state) => {
@@ -129,11 +135,10 @@ const Shell = () => {
       const bx = basePositions[ix];
       const by = basePositions[ix + 1];
       const bz = basePositions[ix + 2];
-      const len = Math.sqrt(bx * bx + by * by + bz * bz) || 1;
-      // Independent radial wobble per vertex
+      // Wobble is shared by duplicate vertices at the same node, keeping faces connected
       const wobble =
-        0.06 * Math.sin(t * 1.4 + phases[i]) +
-        0.03 * Math.sin(t * 2.6 + phases[i] * 1.7);
+        0.06 * Math.sin(t * 1.4 + nodePhases[i]) +
+        0.03 * Math.sin(t * 2.6 + nodePhases[i] * 1.7);
       const k = 1 + wobble;
       pos.array[ix] = bx * k;
       pos.array[ix + 1] = by * k;
