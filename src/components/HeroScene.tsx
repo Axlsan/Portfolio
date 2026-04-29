@@ -33,7 +33,7 @@ const WavingMan = () => {
       rightArm.current.rotation.x = 0.2;
     }
     if (leftArm.current) {
-      leftArm.current.rotation.z = 0.25;
+      leftArm.current.rotation.z = 0.05 + Math.sin(t * 1.2) * 0.04;
     }
     // Head tracks the mouse pointer (pointer is normalized -1..1)
     if (head.current) {
@@ -86,65 +86,74 @@ const WavingMan = () => {
           {lowPolyMat("#e8a07a", { roughness: 0.6 })}
         </mesh>
 
-        {/* Torso — shirt */}
+        {/* Torso — faceted trapezoid (wider at shoulders, narrower at waist) */}
         <mesh position={[0, 0.5, 0]}>
-          <icosahedronGeometry args={[0.55, 1]} />
-          {lowPolyMat("#ff6a2a", { emissive: "#ff3a1a", emissiveIntensity: 0.25, roughness: 0.7 })}
+          <cylinderGeometry args={[0.28, 0.38, 0.95, 6]} />
+          {lowPolyMat("#ff6a2a", { emissive: "#ff3a1a", emissiveIntensity: 0.2, roughness: 0.7 })}
         </mesh>
-        {/* Shirt collar accent */}
-        <mesh position={[0, 0.95, 0.05]} rotation={[0.3, 0, 0]}>
-          <coneGeometry args={[0.18, 0.18, 4]} />
+        {/* Shirt V-neck collar accent */}
+        <mesh position={[0, 0.92, 0.22]} rotation={[0.4, 0, Math.PI]}>
+          <coneGeometry args={[0.1, 0.16, 3]} />
           {lowPolyMat("#2a1a14", { roughness: 0.8 })}
         </mesh>
 
-        {/* Hips / belt */}
-        <mesh position={[0, -0.05, 0]}>
-          <cylinderGeometry args={[0.36, 0.34, 0.14, 6]} />
+        {/* Belt */}
+        <mesh position={[0, 0.0, 0]}>
+          <cylinderGeometry args={[0.4, 0.4, 0.08, 6]} />
           {lowPolyMat("#1a1410", { roughness: 0.7, metalness: 0.3 })}
         </mesh>
 
-        {/* Right arm (waving) — shirt sleeve + skin forearm */}
-        <group ref={rightArm} position={[0.42, 0.85, 0]}>
+        {/* Right arm (waving) — pivots at shoulder; mesh hangs downward from origin */}
+        <group ref={rightArm} position={[0.34, 0.92, 0]}>
+          {/* Shoulder cap */}
+          <mesh position={[0, 0, 0]}>
+            <icosahedronGeometry args={[0.13, 0]} />
+            {lowPolyMat("#ff6a2a", { emissive: "#ff3a1a", emissiveIntensity: 0.2, roughness: 0.7 })}
+          </mesh>
           {/* Upper arm sleeve */}
-          <mesh position={[0, -0.22, 0]}>
-            <cylinderGeometry args={[0.11, 0.09, 0.4, 6]} />
+          <mesh position={[0, -0.18, 0]}>
+            <cylinderGeometry args={[0.1, 0.085, 0.36, 6]} />
             {lowPolyMat("#ff6a2a", { emissive: "#ff3a1a", emissiveIntensity: 0.2, roughness: 0.7 })}
           </mesh>
           {/* Forearm skin */}
-          <mesh position={[0, -0.6, 0]}>
-            <cylinderGeometry args={[0.085, 0.075, 0.4, 6]} />
+          <mesh position={[0, -0.55, 0]}>
+            <cylinderGeometry args={[0.078, 0.07, 0.36, 6]} />
             {lowPolyMat("#e8a07a", { roughness: 0.6 })}
           </mesh>
           {/* Hand */}
-          <mesh position={[0, -0.86, 0]}>
-            <icosahedronGeometry args={[0.13, 0]} />
+          <mesh position={[0, -0.78, 0]}>
+            <icosahedronGeometry args={[0.11, 0]} />
             {lowPolyMat("#e8a07a", { roughness: 0.6 })}
           </mesh>
         </group>
 
         {/* Left arm (resting) */}
-        <group ref={leftArm} position={[-0.42, 0.85, 0]}>
-          <mesh position={[0, -0.22, 0]}>
-            <cylinderGeometry args={[0.11, 0.09, 0.4, 6]} />
+        <group ref={leftArm} position={[-0.34, 0.92, 0]}>
+          <mesh position={[0, 0, 0]}>
+            <icosahedronGeometry args={[0.13, 0]} />
             {lowPolyMat("#ff6a2a", { emissive: "#ff3a1a", emissiveIntensity: 0.2, roughness: 0.7 })}
           </mesh>
-          <mesh position={[0, -0.6, 0]}>
-            <cylinderGeometry args={[0.085, 0.075, 0.4, 6]} />
+          <mesh position={[0, -0.18, 0]}>
+            <cylinderGeometry args={[0.1, 0.085, 0.36, 6]} />
+            {lowPolyMat("#ff6a2a", { emissive: "#ff3a1a", emissiveIntensity: 0.2, roughness: 0.7 })}
+          </mesh>
+          <mesh position={[0, -0.55, 0]}>
+            <cylinderGeometry args={[0.078, 0.07, 0.36, 6]} />
             {lowPolyMat("#e8a07a", { roughness: 0.6 })}
           </mesh>
-          <mesh position={[0, -0.86, 0]}>
-            <icosahedronGeometry args={[0.12, 0]} />
+          <mesh position={[0, -0.78, 0]}>
+            <icosahedronGeometry args={[0.11, 0]} />
             {lowPolyMat("#e8a07a", { roughness: 0.6 })}
           </mesh>
         </group>
 
         {/* Legs — pants */}
-        <mesh position={[0.18, -0.55, 0]}>
-          <cylinderGeometry args={[0.13, 0.11, 0.7, 6]} />
+        <mesh position={[0.16, -0.5, 0]}>
+          <cylinderGeometry args={[0.14, 0.11, 0.85, 6]} />
           {lowPolyMat("#2a2a3a", { roughness: 0.85 })}
         </mesh>
-        <mesh position={[-0.18, -0.55, 0]}>
-          <cylinderGeometry args={[0.13, 0.11, 0.7, 6]} />
+        <mesh position={[-0.16, -0.5, 0]}>
+          <cylinderGeometry args={[0.14, 0.11, 0.85, 6]} />
           {lowPolyMat("#2a2a3a", { roughness: 0.85 })}
         </mesh>
         {/* Shoes */}
