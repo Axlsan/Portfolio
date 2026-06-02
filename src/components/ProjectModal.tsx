@@ -106,9 +106,6 @@ export const ProjectModal = ({
               </p>
 
               <div className="space-y-4 mb-8">
-                <Row k="Client" v={project.client} />
-                <Row k="Role" v={project.role} />
-                <Row k="Year" v={project.year} />
                 <Row k="Format" v={project.media.type.toUpperCase()} />
               </div>
 

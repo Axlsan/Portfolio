@@ -15,9 +15,6 @@ export type Project = {
   index: string;
   title: string;
   category: string;
-  year: string;
-  client: string;
-  role: string;
   description: string;
   tags: string[];
   cover: string;
@@ -31,9 +28,6 @@ export const projects: Project[] = [
     index: "01",
     title: "Magma Terrain System",
     category: "Realtime Shader",
-    year: "2024",
-    client: "Internal R&D",
-    role: "Tech Art Lead",
     description:
       "Procedural lava terrain with multi-octave noise displacement, emissive crack masking, and a custom heat-haze post pass. Authored in HLSL for a Unity URP target running at 4K/60.",
     tags: ["HLSL", "URP", "Procedural", "Post FX"],
@@ -46,9 +40,6 @@ export const projects: Project[] = [
     index: "02",
     title: "Iris — Thin Film",
     category: "PBR Material Study",
-    year: "2024",
-    client: "Personal",
-    role: "Shader / Lighting",
     description:
       "Physically-based thin-film interference shader exploring the Fresnel-weighted layer thickness model, written from scratch in GLSL.",
     tags: ["GLSL", "PBR", "Optics"],
@@ -60,9 +51,6 @@ export const projects: Project[] = [
     index: "03",
     title: "Ember — Particle Sim",
     category: "VFX",
-    year: "2023",
-    client: "Spectral Studios",
-    role: "FX Artist",
     description:
       "Houdini-authored ember and smoke simulation, baked to Vertex Animation Texture for realtime playback with no runtime cost.",
     tags: ["Houdini", "VAT", "VFX"],
@@ -74,9 +62,6 @@ export const projects: Project[] = [
     index: "04",
     title: "Atlas — Hero Sculpt",
     category: "Character Pipeline",
-    year: "2024",
-    client: "Foundry XR",
-    role: "Tech Art / Pipeline",
     description:
       "End-to-end pipeline from a 12M-tri ZBrush sculpt to a 28k LOD0 game-ready asset, including custom retopo bake and material setup.",
     tags: ["ZBrush", "Retopo", "Bake"],
@@ -89,9 +74,6 @@ export const projects: Project[] = [
     index: "05",
     title: "Topology Studies",
     category: "Modeling Research",
-    year: "2023",
-    client: "Personal",
-    role: "Modeling",
     description:
       "Series exploring optimal edge-flow strategies for procedurally generated terrain, with quad-dominant remeshing and curvature analysis.",
     tags: ["Topology", "Geometry", "Research"],
@@ -103,9 +85,6 @@ export const projects: Project[] = [
     index: "06",
     title: "Tide — Ocean Shader",
     category: "Realtime Shader",
-    year: "2024",
-    client: "Driftwave Games",
-    role: "Senior Tech Artist",
     description:
       "Cinematic ocean shader with Gerstner waves, screen-space refractions, and a custom horizon-fade for performant skyboxes.",
     tags: ["Shader", "Gerstner", "SSR"],
