@@ -50,7 +50,7 @@ export const ProjectCard = ({
       </div>
       {/* Bottom content */}
       <div className="absolute bottom-0 left-0 right-0 p-5 md:p-6">
-        <div className="hud-label mb-2">{project.category} · {project.year}</div>
+        <div className="hud-label mb-2">{project.category}</div>
         <h3 className="display-font text-3xl md:text-4xl text-foreground leading-none mb-3">
           {project.title}
         </h3>
