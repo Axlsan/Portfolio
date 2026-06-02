@@ -57,7 +57,7 @@ const Index = () => {
             >
               <div className="hud-label mb-6 flex items-center gap-3">
                 <span className="w-8 h-px bg-primary" />
-                Technical Artist · Berlin / Remote
+                Technical Artist · Gothenburg / Remote
               </div>
               <h1 className="display-font text-[clamp(2.5rem,8vw,8rem)] leading-[0.85]">
                 FORGING<br />
