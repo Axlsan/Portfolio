@@ -19,7 +19,7 @@ const Index = () => {
         <div className="flex items-center justify-between px-8 md:px-16 py-4">
           <a href="#top" className="flex items-center gap-3">
             <span className="w-2 h-2 bg-primary animate-pulse-ember" />
-            <span className="display-font text-sm tracking-tight">KAI / FORGE</span>
+            <span className="display-font text-sm tracking-tight">AXEL / SANNE</span>
           </a>
           <nav className="hidden md:flex items-center gap-8 mono-font text-[11px] uppercase tracking-[0.25em]">
             <a href="#work" className="hover:text-primary transition-colors">Work</a>
