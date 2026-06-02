@@ -57,7 +57,7 @@ const Index = () => {
             >
               <div className="hud-label mb-6 flex items-center gap-3">
                 <span className="w-8 h-px bg-primary" />
-                Technical Artist · Berlin / Remote
+                Technical Artist · Gothenburg / Remote
               </div>
               <h1 className="display-font text-[clamp(2.5rem,8vw,8rem)] leading-[0.85]">
                 FORGING<br />
@@ -203,7 +203,7 @@ const Index = () => {
 
       {/* === FOOTER === */}
       <footer className="border-t border-border px-8 md:px-16 py-6 flex flex-col md:flex-row justify-between gap-3 mono-font text-[10px] uppercase tracking-[0.25em] text-foreground/50">
-        <span>© 2024 Kai Forge — built in three.js</span>
+        <span>© 2024 Axel Sanne — built in three.js</span>
         <span>v1.4.2 · last forged 2024.06</span>
       </footer>
 
