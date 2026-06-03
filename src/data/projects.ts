@@ -33,7 +33,7 @@ export const projects: Project[] = [
     title: "Animation Pipeline in Unreal Engine",
     category: "Realtime Pipeline",
     description:
-      "End-to-end animation pipeline built inside Unreal Engine — covering rig import, sequencer staging, and render passes for cinematic output.",
+      "A walkthrough of the parts that make up an animation pipeline built around Unreal Engine. Designed to be easy to follow for newcomers and scalable for larger teams — covering project management, folder structures, Perforce version control, Blender model prep, and post-production, with Notion and Trello tracking progress.",
     tags: ["Unreal Engine", "Animation", "Pipeline"],
     cover: animationPipeline,
     media: { type: "image", src: animationPipeline },
@@ -46,8 +46,8 @@ export const projects: Project[] = [
     title: "Backpack Animation",
     category: "Realtime Animation",
     description:
-      "Stylised backpack animation showcasing material work, lighting and sequenced camera moves in Unreal Engine.",
-    tags: ["Unreal Engine", "Animation", "Lighting"],
+      "Made shortly after joining AFRY Experience Studios as part of the in-house team. A first real product animation with moving parts, produced in 3ds Max and After Effects alongside the studio.",
+    tags: ["3ds Max", "After Effects", "Animation"],
     cover: backpack,
     media: { type: "image", src: backpack },
     link: "https://www.behance.net/gallery/226935767/Backpack-animation",
@@ -58,8 +58,8 @@ export const projects: Project[] = [
     title: "Building Demo — Unreal Engine 5",
     category: "Architectural Realtime",
     description:
-      "Architectural exterior built and lit in Unreal Engine 5, leveraging Lumen and Nanite for high-fidelity realtime visualisation.",
-    tags: ["UE5", "Lumen", "Nanite", "Archviz"],
+      "A blueprint built in Unreal Engine 5 that takes every component of a building and sends each one along a unique, randomised path to its final position — assembling itself into an animated construction sequence entirely inside Unreal.",
+    tags: ["UE5", "Blueprints", "Archviz"],
     cover: buildingDemo,
     media: { type: "image", src: buildingDemo },
     span: "tall",
@@ -71,8 +71,8 @@ export const projects: Project[] = [
     title: "Product Render — Dometic",
     category: "Product Visualisation",
     description:
-      "Studio-grade product render developed for Dometic, focused on accurate materials, controlled lighting and presentation-ready composition.",
-    tags: ["Product", "Render", "Studio"],
+      "CGI shots of various products from Dometic. Models prepped and textured in Blender.",
+    tags: ["Blender", "Product", "Render"],
     cover: dometic,
     media: { type: "image", src: dometic },
     link: "https://www.behance.net/gallery/183064247/Product-Render-Dometic",
@@ -83,8 +83,8 @@ export const projects: Project[] = [
     title: "Product Render — OHE-OK",
     category: "Product Visualisation",
     description:
-      "Clean product visualisation for OHE-OK with a calibrated studio backdrop and tight focus on surface detail.",
-    tags: ["Product", "Render", "Lighting"],
+      "CGI shots and animation of an OHE-OK, with a hero shot of a GC from Timars. Models prepped, textured and rendered in Blender.",
+    tags: ["Blender", "Product", "Animation"],
     cover: oheOk,
     media: { type: "image", src: oheOk },
     link: "https://www.behance.net/gallery/183057547/Product-Render-OHE-OK",
@@ -95,8 +95,8 @@ export const projects: Project[] = [
     title: "Car Glass — Unreal Engine 4",
     category: "Realtime Shader",
     description:
-      "Realtime automotive glass and paint study authored in Unreal Engine 4 — exploring refraction, reflections and clear-coat behaviour.",
-    tags: ["UE4", "Materials", "Automotive"],
+      "A material built in Unreal Engine 4 for a car simulator. Translucent windows were a performance hit, so the shader transitions from translucent to opaque using a dithering effect as the car moves away from the camera — and fills back in as it returns.",
+    tags: ["UE4", "Materials", "Optimisation"],
     cover: carGlass,
     media: { type: "image", src: carGlass },
     span: "wide",
@@ -108,8 +108,8 @@ export const projects: Project[] = [
     title: "Unreal Project — Studio",
     category: "Realtime Scene",
     description:
-      "A controlled studio environment built in Unreal — used as a sandbox for lighting setups, material calibration and turntable renders.",
-    tags: ["Unreal", "Studio", "Lighting"],
+      "An Unreal project built to test runtime mesh loading and material assignment, outputting rendered images on the fly. A plugin enables loading meshes at runtime, and any FBX can be imported and assigned materials per material-ID slot.",
+    tags: ["Unreal", "Runtime", "FBX"],
     cover: unrealStudio,
     media: { type: "image", src: unrealStudio },
     link: "https://www.behance.net/gallery/161768385/Unreal-Project-Studio",
@@ -120,8 +120,8 @@ export const projects: Project[] = [
     title: "Product Render — DJI Mavic 2 Pro",
     category: "Product Visualisation",
     description:
-      "High-detail recreation and render of the DJI Mavic 2 Pro, focused on hard-surface modelling and presentation lighting.",
-    tags: ["Product", "Hard-Surface", "Render"],
+      "CGI studio shots of a DJI Mavic 2 Pro. Modelled and textured in Blender, with post-processing finished in Photoshop.",
+    tags: ["Blender", "Photoshop", "Product"],
     cover: djiMavic,
     media: { type: "image", src: djiMavic },
     link: "https://www.behance.net/gallery/161114431/Product-Render-DJI-Mavic-2-Pro",
@@ -132,11 +132,12 @@ export const projects: Project[] = [
     title: "Performance Modeling — Åkareplatsen",
     category: "Architectural Modeling",
     description:
-      "Performance-focused architectural model of the Åkareplatsen building — optimised topology for realtime use without losing silhouette fidelity.",
-    tags: ["Modeling", "Architecture", "Optimisation"],
+      "A recreation of a building from Åkareplatsen. Photography and Google Maps were used to gather measurements and reference textures. The building was topologised and UV-mapped in 3ds Max, then shaded in Unreal Engine with trim textures.",
+    tags: ["3ds Max", "Unreal", "Trim Sheets"],
     cover: akareplatsen,
     media: { type: "image", src: akareplatsen },
     span: "wide",
     link: "https://www.behance.net/gallery/161114009/Performance-Modeling-Akareplatsen-building",
   },
+
 ];
