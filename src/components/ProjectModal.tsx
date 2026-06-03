@@ -95,7 +95,7 @@ export const ProjectModal = ({
             </div>
 
             {/* Side panel */}
-            <div className="lg:w-[420px] lg:flex-shrink-0 border-t lg:border-t-0 lg:border-l border-border p-6 md:p-8 overflow-y-auto bg-surface-1">
+            <div className="lg:w-[480px] lg:flex-shrink-0 border-t lg:border-t-0 lg:border-l border-border p-6 md:p-8 overflow-y-auto bg-surface-1">
               <div className="hud-label mb-3">/{project.index} · {project.category}</div>
               <h2 className="display-font text-4xl md:text-5xl mb-6 leading-none">
                 {project.title}
@@ -104,6 +104,19 @@ export const ProjectModal = ({
               <p className="serif-font text-lg text-foreground/80 italic mb-8 leading-snug">
                 {project.description}
               </p>
+
+              {project.sections && project.sections.length > 0 && (
+                <div className="space-y-6 mb-8">
+                  {project.sections.map((s) => (
+                    <div key={s.heading}>
+                      <div className="hud-label mb-2 text-primary">{s.heading}</div>
+                      <div className="serif-font text-[15px] text-foreground/80 leading-relaxed whitespace-pre-line">
+                        {s.body}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              )}
 
               <div className="space-y-4 mb-8">
                 <Row k="Format" v={project.media.type.toUpperCase()} />
@@ -122,6 +135,7 @@ export const ProjectModal = ({
                 ))}
               </div>
             </div>
+
           </motion.div>
         </motion.div>
       )}
