@@ -15,6 +15,11 @@ export type ProjectMedia =
 
 export type ProjectSection = { heading: string; body: string };
 
+export type ProjectBlock =
+  | { type: "heading"; body: string }
+  | { type: "text"; body: string }
+  | { type: "image"; src: string; alt?: string };
+
 export type Project = {
   id: string;
   index: string;
@@ -27,7 +32,9 @@ export type Project = {
   span?: "wide" | "tall" | "regular";
   link?: string;
   sections?: ProjectSection[];
+  blocks?: ProjectBlock[];
 };
+
 
 
 export const projects: Project[] = [
