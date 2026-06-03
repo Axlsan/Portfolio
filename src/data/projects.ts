@@ -13,6 +13,8 @@ export type ProjectMedia =
   | { type: "video"; src: string; poster: string }
   | { type: "model"; variant: "torus" | "knot" | "crystal" };
 
+export type ProjectSection = { heading: string; body: string };
+
 export type Project = {
   id: string;
   index: string;
@@ -24,7 +26,9 @@ export type Project = {
   media: ProjectMedia;
   span?: "wide" | "tall" | "regular";
   link?: string;
+  sections?: ProjectSection[];
 };
+
 
 export const projects: Project[] = [
   {
