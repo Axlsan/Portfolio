@@ -13,6 +13,8 @@ export type ProjectMedia =
   | { type: "video"; src: string; poster: string }
   | { type: "model"; variant: "torus" | "knot" | "crystal" };
 
+export type ProjectSection = { heading: string; body: string };
+
 export type Project = {
   id: string;
   index: string;
@@ -24,7 +26,9 @@ export type Project = {
   media: ProjectMedia;
   span?: "wide" | "tall" | "regular";
   link?: string;
+  sections?: ProjectSection[];
 };
+
 
 export const projects: Project[] = [
   {
@@ -33,13 +37,32 @@ export const projects: Project[] = [
     title: "Animation Pipeline in Unreal Engine",
     category: "Realtime Pipeline",
     description:
-      "A walkthrough of the parts that make up an animation pipeline built around Unreal Engine. Designed to be easy to follow for newcomers and scalable for larger teams — covering project management, folder structures, Perforce version control, Blender model prep, and post-production, with Notion and Trello tracking progress.",
+      "A walkthrough of the parts that make up an animation pipeline built around Unreal Engine. Designed to be easy to approach for newcomers and scalable for larger teams.",
     tags: ["Unreal Engine", "Animation", "Pipeline"],
     cover: animationPipeline,
     media: { type: "image", src: animationPipeline },
     span: "wide",
     link: "https://www.behance.net/gallery/225765435/Animation-Pipeline-in-Unreal-Engine",
+    sections: [
+      {
+        heading: "Project management & IT",
+        body: "For a project of this size there are prerequisites that leverage the production. A clear folder structure separating work files, renders and deliverables enables teamwork and isolates production into manageable chunks. Perforce handles revision control so users can collaborate and track changes — a virtual machine running the Perforce server keeps the project accessible at all times. Progress is tracked in Trello or Notion, with key tasks, defined review checkpoints and clear goals keeping work of any size on track.",
+      },
+      {
+        heading: "Model preparation — Blender",
+        body: "Blender is used to take full control of the transition from prep into Unreal.\n\n1. Mesh geometry — Normals are fixed so light hits surfaces correctly for smooth shading. Edges are cleaned so geometry lines up neatly without jagged or blocky areas.\n\n2. Materials & UV mapping — Materials define how a surface reads (wood, metal, glass) through texture, colour and reflectivity. UVs unwrap the model flat so textures fit without stretching.\n\n3. Rigging — A skeleton of bones drives the model like a puppet, enabling pose and animation downstream.",
+      },
+      {
+        heading: "Scene, animation & rendering — Unreal",
+        body: "Unreal Engine is widely used in games, animation and visualisation. It's approachable with a huge community, though hitting top-tier visual quality takes care since it's built for realtime.\n\n1. Model setup — Materials define how surfaces react to light. Control Rigs make characters and props poseable. Blueprints act as visual scripts so a single control system can drive materials, lighting and more.\n\n2. Scene building — Terrain, architecture and props are placed to craft the space. Lighting drives mood and realism through source choice, intensity, colour, shadows and reflections.\n\n3. Animation — Blueprints drive motion, from input-triggered walk cycles to environmental reactions. Reusable motion lets a single animation be applied across multiple characters for speed and consistency.\n\n4. Rendering — Render presets and console variables tune quality, resolution and performance. Layer management splits the scene (background, characters, foreground) for compositing. The output path keeps final frames organised for hand-off.",
+      },
+      {
+        heading: "Post-production",
+        body: "Layers were used to mask materials and objects so elements could be edited independently in After Effects. Each scene was finished separately and then combined with text in the final cut.",
+      },
+    ],
   },
+
   {
     id: "backpack",
     index: "02",
