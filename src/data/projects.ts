@@ -1,9 +1,12 @@
-import workTerrain from "@/assets/work-terrain.jpg";
-import workShader from "@/assets/work-shader.jpg";
-import workParticles from "@/assets/work-particles.jpg";
-import workSculpt from "@/assets/work-sculpt.jpg";
-import workTopology from "@/assets/work-topology.jpg";
-import workWater from "@/assets/work-water.jpg";
+import animationPipeline from "@/assets/behance/animation-pipeline.png";
+import backpack from "@/assets/behance/backpack.png";
+import buildingDemo from "@/assets/behance/building-demo.jpeg";
+import dometic from "@/assets/behance/dometic.png";
+import oheOk from "@/assets/behance/ohe-ok.png";
+import carGlass from "@/assets/behance/car-glass.png";
+import unrealStudio from "@/assets/behance/unreal-studio.png";
+import djiMavic from "@/assets/behance/dji-mavic.png";
+import akareplatsen from "@/assets/behance/akareplatsen.png";
 
 export type ProjectMedia =
   | { type: "image"; src: string }
@@ -20,76 +23,120 @@ export type Project = {
   cover: string;
   media: ProjectMedia;
   span?: "wide" | "tall" | "regular";
+  link?: string;
 };
 
 export const projects: Project[] = [
   {
-    id: "magma",
+    id: "animation-pipeline",
     index: "01",
-    title: "Magma Terrain System",
-    category: "Realtime Shader",
+    title: "Animation Pipeline in Unreal Engine",
+    category: "Realtime Pipeline",
     description:
-      "Procedural lava terrain with multi-octave noise displacement, emissive crack masking, and a custom heat-haze post pass. Authored in HLSL for a Unity URP target running at 4K/60.",
-    tags: ["HLSL", "URP", "Procedural", "Post FX"],
-    cover: workTerrain,
-    media: { type: "image", src: workTerrain },
+      "End-to-end animation pipeline built inside Unreal Engine — covering rig import, sequencer staging, and render passes for cinematic output.",
+    tags: ["Unreal Engine", "Animation", "Pipeline"],
+    cover: animationPipeline,
+    media: { type: "image", src: animationPipeline },
     span: "wide",
+    link: "https://www.behance.net/gallery/225765435/Animation-Pipeline-in-Unreal-Engine",
   },
   {
-    id: "iris",
+    id: "backpack",
     index: "02",
-    title: "Iris — Thin Film",
-    category: "PBR Material Study",
+    title: "Backpack Animation",
+    category: "Realtime Animation",
     description:
-      "Physically-based thin-film interference shader exploring the Fresnel-weighted layer thickness model, written from scratch in GLSL.",
-    tags: ["GLSL", "PBR", "Optics"],
-    cover: workShader,
-    media: { type: "model", variant: "crystal" },
+      "Stylised backpack animation showcasing material work, lighting and sequenced camera moves in Unreal Engine.",
+    tags: ["Unreal Engine", "Animation", "Lighting"],
+    cover: backpack,
+    media: { type: "image", src: backpack },
+    link: "https://www.behance.net/gallery/226935767/Backpack-animation",
   },
   {
-    id: "ember",
+    id: "building-demo",
     index: "03",
-    title: "Ember — Particle Sim",
-    category: "VFX",
+    title: "Building Demo — Unreal Engine 5",
+    category: "Architectural Realtime",
     description:
-      "Houdini-authored ember and smoke simulation, baked to Vertex Animation Texture for realtime playback with no runtime cost.",
-    tags: ["Houdini", "VAT", "VFX"],
-    cover: workParticles,
-    media: { type: "image", src: workParticles },
-  },
-  {
-    id: "atlas",
-    index: "04",
-    title: "Atlas — Hero Sculpt",
-    category: "Character Pipeline",
-    description:
-      "End-to-end pipeline from a 12M-tri ZBrush sculpt to a 28k LOD0 game-ready asset, including custom retopo bake and material setup.",
-    tags: ["ZBrush", "Retopo", "Bake"],
-    cover: workSculpt,
-    media: { type: "model", variant: "torus" },
+      "Architectural exterior built and lit in Unreal Engine 5, leveraging Lumen and Nanite for high-fidelity realtime visualisation.",
+    tags: ["UE5", "Lumen", "Nanite", "Archviz"],
+    cover: buildingDemo,
+    media: { type: "image", src: buildingDemo },
     span: "tall",
+    link: "https://www.behance.net/gallery/188994551/Building-Demo-Unreal-Engine-5",
   },
   {
-    id: "topo",
-    index: "05",
-    title: "Topology Studies",
-    category: "Modeling Research",
+    id: "dometic",
+    index: "04",
+    title: "Product Render — Dometic",
+    category: "Product Visualisation",
     description:
-      "Series exploring optimal edge-flow strategies for procedurally generated terrain, with quad-dominant remeshing and curvature analysis.",
-    tags: ["Topology", "Geometry", "Research"],
-    cover: workTopology,
-    media: { type: "model", variant: "knot" },
+      "Studio-grade product render developed for Dometic, focused on accurate materials, controlled lighting and presentation-ready composition.",
+    tags: ["Product", "Render", "Studio"],
+    cover: dometic,
+    media: { type: "image", src: dometic },
+    link: "https://www.behance.net/gallery/183064247/Product-Render-Dometic",
   },
   {
-    id: "tide",
+    id: "ohe-ok",
+    index: "05",
+    title: "Product Render — OHE-OK",
+    category: "Product Visualisation",
+    description:
+      "Clean product visualisation for OHE-OK with a calibrated studio backdrop and tight focus on surface detail.",
+    tags: ["Product", "Render", "Lighting"],
+    cover: oheOk,
+    media: { type: "image", src: oheOk },
+    link: "https://www.behance.net/gallery/183057547/Product-Render-OHE-OK",
+  },
+  {
+    id: "car-glass",
     index: "06",
-    title: "Tide — Ocean Shader",
+    title: "Car Glass — Unreal Engine 4",
     category: "Realtime Shader",
     description:
-      "Cinematic ocean shader with Gerstner waves, screen-space refractions, and a custom horizon-fade for performant skyboxes.",
-    tags: ["Shader", "Gerstner", "SSR"],
-    cover: workWater,
-    media: { type: "image", src: workWater },
+      "Realtime automotive glass and paint study authored in Unreal Engine 4 — exploring refraction, reflections and clear-coat behaviour.",
+    tags: ["UE4", "Materials", "Automotive"],
+    cover: carGlass,
+    media: { type: "image", src: carGlass },
     span: "wide",
+    link: "https://www.behance.net/gallery/162555433/Car-Glass-Unreal-Engine-4",
+  },
+  {
+    id: "unreal-studio",
+    index: "07",
+    title: "Unreal Project — Studio",
+    category: "Realtime Scene",
+    description:
+      "A controlled studio environment built in Unreal — used as a sandbox for lighting setups, material calibration and turntable renders.",
+    tags: ["Unreal", "Studio", "Lighting"],
+    cover: unrealStudio,
+    media: { type: "image", src: unrealStudio },
+    link: "https://www.behance.net/gallery/161768385/Unreal-Project-Studio",
+  },
+  {
+    id: "dji-mavic",
+    index: "08",
+    title: "Product Render — DJI Mavic 2 Pro",
+    category: "Product Visualisation",
+    description:
+      "High-detail recreation and render of the DJI Mavic 2 Pro, focused on hard-surface modelling and presentation lighting.",
+    tags: ["Product", "Hard-Surface", "Render"],
+    cover: djiMavic,
+    media: { type: "image", src: djiMavic },
+    link: "https://www.behance.net/gallery/161114431/Product-Render-DJI-Mavic-2-Pro",
+  },
+  {
+    id: "akareplatsen",
+    index: "09",
+    title: "Performance Modeling — Åkareplatsen",
+    category: "Architectural Modeling",
+    description:
+      "Performance-focused architectural model of the Åkareplatsen building — optimised topology for realtime use without losing silhouette fidelity.",
+    tags: ["Modeling", "Architecture", "Optimisation"],
+    cover: akareplatsen,
+    media: { type: "image", src: akareplatsen },
+    span: "wide",
+    link: "https://www.behance.net/gallery/161114009/Performance-Modeling-Akareplatsen-building",
   },
 ];
