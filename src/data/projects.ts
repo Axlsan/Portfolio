@@ -45,21 +45,24 @@ export const projects: Project[] = [
     title: "GraviDrift",
     category: "Game",
     description:
-      "A fast-paced mobile space runner where you pilot a ship through gravity wells, asteroid fields and neon rings — built in Unreal Engine and released on Google Play.",
+      "A small indie mobile arcade game made by a team of four in their free time — fly through deep space, dodge obstacles and chase the highest score. Built in Unreal Engine and released on Google Play.",
     tags: ["Unreal Engine", "Mobile", "Game Design"],
     cover: gravidrift,
     media: { type: "image", src: gravidrift },
     span: "wide",
     link: "https://play.google.com/store/apps/details?id=com.ThreeDLFGStudios.GraviDrift&hl=sv",
     blocks: [
-      { type: "text", body: "GraviDrift is a mobile arcade game built in Unreal Engine and released on Google Play. Pilot a small craft through deep space, threading gravity wells and dodging obstacles as the world streams past in streaks of light." },
+      { type: "text", body: "GraviDrift is a small indie game created by a team of four passionate developers in their free time." },
+      { type: "text", body: "Fly through deep space and dodge obstacles as you push your reflexes to the limit. Your goal: go as fast as possible and chase the highest score!" },
+      { type: "text", body: "Featuring fast-paced movement, tight controls, and procedurally placed obstacles, GraviDrift challenges you to master drifting through narrow gaps and reacting in split-second situations." },
+      { type: "text", body: "Whether you're looking for a quick arcade challenge or a skill-based speedrun experience, GraviDrift offers endless replayability and a pure focus on fun movement." },
+      { type: "heading", body: "Key Features" },
+      { type: "text", body: "• Free flight\n• Fast and responsive movement\n• Score-based progression and replay value\n• Lightweight build, no ads, no online connection required\n• Made entirely by a small indie team with love" },
+      { type: "text", body: "Can you handle the drift?" },
       { type: "image", src: gravidrift, alt: "GraviDrift in-game screenshot" },
-      { type: "heading", body: "Concept" },
-      { type: "text", body: "The goal was to capture the feeling of speed and weightlessness on a touchscreen — a single-thumb control scheme, readable silhouettes, and a colour palette that pops against the darkness of space." },
-      { type: "heading", body: "Tech" },
-      { type: "text", body: "Built end-to-end in Unreal Engine with custom Blueprints for procedural level generation, gravity behaviour and scoring. Optimised for mobile GPUs with stylised materials and lightweight post-processing to keep frame rates steady on a wide range of Android devices." },
     ],
   },
+
 
   /* Commented out — Animation Pipeline article preserved for reference
   {
