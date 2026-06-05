@@ -7,6 +7,7 @@ import carGlass from "@/assets/behance/car-glass.png";
 import unrealStudio from "@/assets/behance/unreal-studio.png";
 import djiMavic from "@/assets/behance/dji-mavic.png";
 import akareplatsen from "@/assets/behance/akareplatsen.png";
+import gravidrift from "@/assets/behance/gravidrift.png";
 
 export type ProjectMedia =
   | { type: "image"; src: string }
@@ -39,65 +40,42 @@ export type Project = {
 
 export const projects: Project[] = [
   {
+    id: "gravidrift",
+    index: "01",
+    title: "GraviDrift",
+    category: "Game",
+    description:
+      "A fast-paced mobile space runner where you pilot a ship through gravity wells, asteroid fields and neon rings — built in Unreal Engine and released on Google Play.",
+    tags: ["Unreal Engine", "Mobile", "Game Design"],
+    cover: gravidrift,
+    media: { type: "image", src: gravidrift },
+    span: "wide",
+    link: "https://play.google.com/store/apps/details?id=com.ThreeDLFGStudios.GraviDrift&hl=sv",
+    blocks: [
+      { type: "text", body: "GraviDrift is a mobile arcade game built in Unreal Engine and released on Google Play. Pilot a small craft through deep space, threading gravity wells and dodging obstacles as the world streams past in streaks of light." },
+      { type: "image", src: gravidrift, alt: "GraviDrift in-game screenshot" },
+      { type: "heading", body: "Concept" },
+      { type: "text", body: "The goal was to capture the feeling of speed and weightlessness on a touchscreen — a single-thumb control scheme, readable silhouettes, and a colour palette that pops against the darkness of space." },
+      { type: "heading", body: "Tech" },
+      { type: "text", body: "Built end-to-end in Unreal Engine with custom Blueprints for procedural level generation, gravity behaviour and scoring. Optimised for mobile GPUs with stylised materials and lightweight post-processing to keep frame rates steady on a wide range of Android devices." },
+    ],
+  },
+
+  /* Commented out — Animation Pipeline article preserved for reference
+  {
     id: "animation-pipeline",
     index: "01",
     title: "Animation Pipeline in Unreal Engine",
     category: "Realtime Pipeline",
-    description:
-      "A walkthrough of the parts that make up an animation pipeline built around Unreal Engine. Designed to be easy to approach for newcomers and scalable for larger teams.",
+    description: "A walkthrough of the parts that make up an animation pipeline built around Unreal Engine.",
     tags: ["Unreal Engine", "Animation", "Pipeline"],
     cover: animationPipeline,
     media: { type: "image", src: animationPipeline },
     span: "wide",
     link: "https://www.behance.net/gallery/225765435/Animation-Pipeline-in-Unreal-Engine",
-    blocks: [
-      { type: "text", body: "This is a walkthrough of the various parts that are necessary for an animation pipeline that utilizes Unreal Engine. There are many ways to achieve the same results, but I've worked towards making it easy to approach — even for the inexperienced user — and also applicable for larger teams." },
-
-      { type: "heading", body: "Project management and IT" },
-      { type: "text", body: "For any project of this size there are some prerequisites to complete which leverage the production." },
-      { type: "image", src: "https://mir-s3-cdn-cf.behance.net/project_modules/max_1200_webp/609595225765435.68259759b153a.png" },
-      { type: "text", body: "Having a folder structure that helps separate work files, renders and deliverables enables teamwork and isolates production into manageable chunks." },
-      { type: "image", src: "https://mir-s3-cdn-cf.behance.net/project_modules/max_1200_webp/77d6f1225765435.68259759b273f.png" },
-      { type: "text", body: "Perforce is a powerful tool for any Unreal project. It enables revision control, which means users can collaborate and track changes in the project. Setting up a virtual machine to run the Perforce server lets all users access the project at all times." },
-      { type: "image", src: "https://mir-s3-cdn-cf.behance.net/project_modules/max_1200_webp/265836225765435.6825b57fc036b.png" },
-      { type: "image", src: "https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/8dfeec225765435.6825b57fc085c.png" },
-      { type: "text", body: "Progress is tracked using tools like Trello or Notion. Establishing a workflow with key tasks, defined timelines for reviews and checkpoints, and clear goals helps keep projects of any size on track." },
-
-      { type: "heading", body: "Model preparation" },
-      { type: "image", src: "https://mir-s3-cdn-cf.behance.net/project_modules/max_1200_webp/3d0dcb225765435.6825b5803641e.png" },
-      { type: "text", body: "For this pipeline, Blender is used to take full control of the transition from preparation to Unreal. The geometry is prepared in several ways, as described below:" },
-
-      { type: "heading", body: "1. Fixing mesh geometry (normals and edges)" },
-      { type: "text", body: "Normals — help with how light hits the surface. Fixing them ensures proper lighting and smooth shading on the model.\n\nEdges — fixing edges makes sure everything lines up neatly and looks clean, avoiding jagged or blocky areas." },
-
-      { type: "heading", body: "2. Setting up materials and UV mapping" },
-      { type: "text", body: "Materials — define the look of the model (like making it look like wood, metal, or glass) by controlling texture, colour, and reflectivity.\n\nUV mapping — \"unwraps\" the model into a flat surface, allowing textures to fit perfectly without stretching." },
-
-      { type: "heading", body: "3. Rigging the models with a skeleton" },
-      { type: "text", body: "Rigging — gives the model a skeleton that lets you pose and animate it, like how you'd move a puppet.\n\nSkeleton — made of bones that control the movement of different parts of the model, allowing for realistic animation." },
-
-      { type: "heading", body: "Scene building, animation and rendering" },
-      { type: "image", src: "https://mir-s3-cdn-cf.behance.net/project_modules/max_1200_webp/efe37b225765435.6826f13248687.png" },
-      { type: "text", body: "Unreal Engine is a widely-used tool, primarily in the gaming industry, but also in animation and visualisations. It's convenient because it's so well-known, with many users and resources available. There can be some challenges to achieving top-tier visual quality, as the engine is primarily made for realtime rendering." },
-
-      { type: "heading", body: "1. Model setup" },
-      { type: "text", body: "The first step in preparing everything for the scene — making sure assets are properly configured for later stages.\n\nMaterials — the foundation of how an object looks. Materials define the texture, colour and behaviour of a surface when it interacts with light.\n\nControl Rigs — a tool for animating characters or objects. Setting up a control rig makes it easier to pose and animate models, especially for character animation.\n\nBlueprints for smart control — Unreal's Blueprint system allows you to create visual scripts for controlling materials, lighting and more, managing multiple aspects with a single control system." },
-
-      { type: "heading", body: "2. Scene building" },
-      { type: "text", body: "Once your models are set up, the next step is building the environment around them — where the virtual world starts to come to life.\n\nEnvironment setup — creating and placing assets like terrain, architecture, props and any other 3D elements that make up the environment.\n\nLighting configuration — crucial to setting the mood and realism of the scene. Choosing light sources, their properties (intensity and colour), and ensuring proper shadows and reflections for a natural or stylised effect." },
-
-      { type: "heading", body: "3. Animation" },
-      { type: "text", body: "At this stage, you add motion and life to your models and environment.\n\nBlueprint usage for animation — Unreal's Blueprint system is often used to drive animations. For example, triggering a character's walk cycle based on player input or an environmental change creates dynamic, interactive experiences.\n\nReusable motion — animation assets that can be reused across different models or characters. A walk cycle created for one character can be applied to others, saving time and maintaining consistency." },
-
-      { type: "heading", body: "4. Rendering" },
-      { type: "text", body: "Finally, after building and animating the scene, it's time to render everything.\n\nRender presets and console variables — predefined settings that control how the scene is rendered (quality, resolution, performance). Console variables allow you to fine-tune render settings, ensuring the scene looks its best and performs efficiently.\n\nLayer management — lets you organise the scene for more control in post. You might separate the background, characters and foreground into distinct layers for easier compositing or applying effects.\n\nOutput path setup — defines where rendered files will be saved, keeping final frames organised for use or further processing." },
-
-      { type: "heading", body: "Post processing" },
-      { type: "image", src: "https://mir-s3-cdn-cf.behance.net/project_modules/max_1200_webp/e5fa36225765435.6826ede70a867.png" },
-      { type: "text", body: "In this production, layers were used to mask materials and objects to easily edit elements in the scene independently in After Effects. Each scene was edited separately and then combined with text." },
-    ],
-
   },
+  */
+
 
   {
     id: "backpack",
