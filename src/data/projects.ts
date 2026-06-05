@@ -7,6 +7,7 @@ import carGlass from "@/assets/behance/car-glass.png";
 import unrealStudio from "@/assets/behance/unreal-studio.png";
 import djiMavic from "@/assets/behance/dji-mavic.png";
 import akareplatsen from "@/assets/behance/akareplatsen.png";
+import gravidrift from "@/assets/behance/gravidrift.png";
 
 export type ProjectMedia =
   | { type: "image"; src: string }
