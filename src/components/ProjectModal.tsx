@@ -179,7 +179,7 @@ export const ProjectModal = ({
                     rel="noopener noreferrer"
                     className="mono-font text-[11px] uppercase tracking-widest inline-block mt-8 border border-border px-4 py-2 hover:border-primary hover:text-primary transition-colors"
                   >
-                    View on Behance ↗
+                    {project.link.includes("play.google.com") ? "View on Play Store" : "View on Behance"} ↗
                   </a>
                 )}
               </div>
