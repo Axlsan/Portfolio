@@ -113,7 +113,6 @@ const Index = () => {
             </h2>
           </div>
           <div className="hidden md:block hud-value text-right text-foreground/60 max-w-xs">
-            {projects.length.toString().padStart(2, "0")} projects · 2023—2024<br />
             click any tile to inspect
           </div>
         </div>
