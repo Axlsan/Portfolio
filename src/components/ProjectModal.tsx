@@ -103,9 +103,7 @@ export const ProjectModal = ({
           exit={{ y: 40, opacity: 0 }}
           transition={{ duration: 0.5, ease: [0.83, 0, 0.17, 1] }}
           onClick={(e) => e.stopPropagation()}
-          className={`absolute inset-4 md:inset-8 lg:inset-12 bg-surface-1 border border-border overflow-hidden ${
-            hasBlocks ? "flex flex-col" : "flex flex-col lg:flex-row"
-          }`}
+          className="absolute inset-4 md:inset-8 lg:inset-12 bg-surface-1 border border-border overflow-hidden flex flex-col"
         >
           {/* Close */}
           <button
@@ -116,25 +114,38 @@ export const ProjectModal = ({
             <X size={16} />
           </button>
 
-          {hasBlocks ? (
-            // Vertical scrollable layout: splash on top, article below
-            <div className="flex-1 overflow-y-auto">
-              {/* Splash */}
-              <div className="relative w-full h-[60vh] bg-background">
-                {Media}
-                <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-surface-1 to-transparent pointer-events-none" />
-              </div>
+          {/* Vertical scrollable layout: splash on top, article below */}
+          <div className="flex-1 overflow-y-auto">
+            {/* Splash */}
+            <div className="relative w-full h-[60vh] bg-background">
+              {Media}
+              <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-surface-1 to-transparent pointer-events-none" />
+            </div>
 
-              {/* Article */}
-              <div className="mx-auto max-w-3xl px-6 md:px-10 py-10 md:py-16">
-                <div className="hud-label mb-3">/{project.index} · {project.category}</div>
-                <h2 className="display-font text-4xl md:text-6xl mb-6 leading-none">
-                  {project.title}
-                </h2>
-                <p className="serif-font text-lg md:text-xl text-foreground/80 italic mb-10 leading-snug">
-                  {project.description}
-                </p>
+            {/* Article */}
+            <div className="mx-auto max-w-3xl px-6 md:px-10 py-10 md:py-16">
+              <div className="hud-label mb-3">/{project.index} · {project.category}</div>
+              <h2 className="display-font text-4xl md:text-6xl mb-6 leading-none">
+                {project.title}
+              </h2>
+              <p className="serif-font text-lg md:text-xl text-foreground/80 italic mb-10 leading-snug">
+                {project.description}
+              </p>
 
+              {project.sections && project.sections.length > 0 && (
+                <div className="space-y-6 mb-10">
+                  {project.sections.map((s) => (
+                    <div key={s.heading}>
+                      <div className="hud-label mb-2 text-primary">{s.heading}</div>
+                      <div className="serif-font text-[17px] md:text-lg text-foreground/85 leading-relaxed whitespace-pre-line">
+                        {s.body}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              )}
+
+              {hasBlocks && (
                 <div className="space-y-8">
                   {project.blocks!.map((b, i) => {
                     if (b.type === "heading") {
@@ -169,58 +180,23 @@ export const ProjectModal = ({
                     );
                   })}
                 </div>
+              )}
 
-                <div className="mt-16">{Stack}</div>
+              <div className="mt-16">{Stack}</div>
 
-                {project.link && (
-                  <a
-                    href={project.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="mono-font text-[11px] uppercase tracking-widest inline-block mt-8 border border-border px-4 py-2 hover:border-primary hover:text-primary transition-colors"
-                  >
-                    {project.link.includes("play.google.com") ? "View on Play Store" : "View on Behance"} ↗
-                  </a>
-                )}
-              </div>
+              {project.link && (
+                <a
+                  href={project.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mono-font text-[11px] uppercase tracking-widest inline-block mt-8 border border-border px-4 py-2 hover:border-primary hover:text-primary transition-colors"
+                >
+                  {project.link.includes("play.google.com") ? "View on Play Store" : "View on Behance"} ↗
+                </a>
+              )}
             </div>
-          ) : (
-            <>
-              {/* Media */}
-              <div className="relative flex-1 bg-background min-h-[280px] lg:min-h-0">{Media}</div>
+          </div>
 
-              {/* Side panel */}
-              <div className="lg:w-[480px] lg:flex-shrink-0 border-t lg:border-t-0 lg:border-l border-border p-6 md:p-8 overflow-y-auto bg-surface-1">
-                <div className="hud-label mb-3">/{project.index} · {project.category}</div>
-                <h2 className="display-font text-4xl md:text-5xl mb-6 leading-none">
-                  {project.title}
-                </h2>
-
-                <p className="serif-font text-lg text-foreground/80 italic mb-8 leading-snug">
-                  {project.description}
-                </p>
-
-                {project.sections && project.sections.length > 0 && (
-                  <div className="space-y-6 mb-8">
-                    {project.sections.map((s) => (
-                      <div key={s.heading}>
-                        <div className="hud-label mb-2 text-primary">{s.heading}</div>
-                        <div className="serif-font text-[15px] text-foreground/80 leading-relaxed whitespace-pre-line">
-                          {s.body}
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                )}
-
-                <div className="space-y-4 mb-8">
-                  <Row k="Format" v={project.media.type.toUpperCase()} />
-                </div>
-
-                {Stack}
-              </div>
-            </>
-          )}
         </motion.div>
       </motion.div>
     </AnimatePresence>
