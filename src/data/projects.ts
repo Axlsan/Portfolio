@@ -8,6 +8,14 @@ import unrealStudio from "@/assets/behance/unreal-studio.png";
 import djiMavic from "@/assets/behance/dji-mavic.png";
 import akareplatsen from "@/assets/behance/akareplatsen.png";
 import gravidrift from "@/assets/behance/gravidrift.png";
+import building1 from "@/assets/behance/building/b1.webp";
+import studio1 from "@/assets/behance/studio/s1.webp";
+import studio2 from "@/assets/behance/studio/s2.webp";
+import studio3 from "@/assets/behance/studio/s3.webp";
+import studio4 from "@/assets/behance/studio/s4.webp";
+import studio5 from "@/assets/behance/studio/s5.webp";
+import studio6 from "@/assets/behance/studio/s6.webp";
+import studio7 from "@/assets/behance/studio/s7.webp";
 
 export type ProjectMedia =
   | { type: "image"; src: string }
@@ -104,6 +112,14 @@ export const projects: Project[] = [
     media: { type: "image", src: buildingDemo },
     span: "tall",
     link: "https://www.behance.net/gallery/188994551/Building-Demo-Unreal-Engine-5",
+    blocks: [
+      { type: "text", body: "Animated building construction in Unreal — a demo of a blueprint that takes all the building's components and sends each one along a unique, randomized path to its final position." },
+      { type: "text", body: "This house was built using a blueprint child class that inherits all the core features from a parent building class. This setup allows other buildings to easily reuse the same functionality." },
+      { type: "text", body: "The main goal was to automate the entire construction process, removing the need to animate each part by hand. Each building component is handled by a separate FlyingComponent blueprint class, which manages the component's movement during construction. Groups are set up to allow components to be placed in a prioritized order." },
+      { type: "text", body: "You can inspect the Blueprints here: https://blueprintue.com/profile/axlsan/" },
+      { type: "image", src: building1, alt: "Construction process with visualized paths for each component" },
+      { type: "text", body: "Construction process with visualized paths for each component." },
+    ],
   },
   {
     id: "dometic",
@@ -153,6 +169,22 @@ export const projects: Project[] = [
     cover: unrealStudio,
     media: { type: "image", src: unrealStudio },
     link: "https://www.behance.net/gallery/161768385/Unreal-Project-Studio",
+    blocks: [
+      { type: "text", body: "This Unreal Engine project is meant to test the ability to load meshes and assign materials at runtime, and finally output rendered images." },
+      { type: "text", body: "The project uses a plugin that enables loading meshes at runtime that would not be possible otherwise." },
+      { type: "image", src: studio1, alt: "Studio scene render" },
+      { type: "text", body: "I prepared two models in Blender. By default the application imports any FBX file." },
+      { type: "image", src: studio2, alt: "Imported FBX models" },
+      { type: "text", body: "The application uses a simple set of predetermined materials." },
+      { type: "image", src: studio3, alt: "Predetermined materials" },
+      { type: "text", body: "Different materials can be set to each material ID slot on the object." },
+      { type: "image", src: studio4, alt: "Material ID slots" },
+      { type: "text", body: "An example of a more detailed object:" },
+      { type: "image", src: studio5, alt: "Detailed object example" },
+      { type: "image", src: studio6, alt: "Studio configurator render" },
+      { type: "text", body: "The output:" },
+      { type: "image", src: studio7, alt: "Final rendered output" },
+    ],
   },
   {
     id: "dji-mavic",
