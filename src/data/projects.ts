@@ -98,7 +98,7 @@ export const projects: Project[] = [
     tags: ["3ds Max", "After Effects", "Animation"],
     cover: backpack,
     media: { type: "image", src: backpack },
-    link: "https://www.behance.net/gallery/226935767/Backpack-animation",
+    
   },
   {
     id: "building-demo",
@@ -111,7 +111,7 @@ export const projects: Project[] = [
     cover: buildingDemo,
     media: { type: "image", src: buildingDemo },
     span: "tall",
-    link: "https://www.behance.net/gallery/188994551/Building-Demo-Unreal-Engine-5",
+    
     blocks: [
       { type: "text", body: "Animated building construction in Unreal — a demo of a blueprint that takes all the building's components and sends each one along a unique, randomized path to its final position." },
       { type: "text", body: "This house was built using a blueprint child class that inherits all the core features from a parent building class. This setup allows other buildings to easily reuse the same functionality." },
@@ -131,7 +131,7 @@ export const projects: Project[] = [
     tags: ["Blender", "Product", "Render"],
     cover: dometic,
     media: { type: "image", src: dometic },
-    link: "https://www.behance.net/gallery/183064247/Product-Render-Dometic",
+    
   },
   {
     id: "ohe-ok",
@@ -143,7 +143,7 @@ export const projects: Project[] = [
     tags: ["Blender", "Product", "Animation"],
     cover: oheOk,
     media: { type: "image", src: oheOk },
-    link: "https://www.behance.net/gallery/183057547/Product-Render-OHE-OK",
+    
   },
   {
     id: "car-glass",
@@ -156,7 +156,7 @@ export const projects: Project[] = [
     cover: carGlass,
     media: { type: "image", src: carGlass },
     span: "wide",
-    link: "https://www.behance.net/gallery/162555433/Car-Glass-Unreal-Engine-4",
+    
   },
   {
     id: "unreal-studio",
@@ -168,7 +168,7 @@ export const projects: Project[] = [
     tags: ["Unreal", "Runtime", "FBX"],
     cover: unrealStudio,
     media: { type: "image", src: unrealStudio },
-    link: "https://www.behance.net/gallery/161768385/Unreal-Project-Studio",
+    
     blocks: [
       { type: "text", body: "This Unreal Engine project is meant to test the ability to load meshes and assign materials at runtime, and finally output rendered images." },
       { type: "text", body: "The project uses a plugin that enables loading meshes at runtime that would not be possible otherwise." },
@@ -196,7 +196,7 @@ export const projects: Project[] = [
     tags: ["Blender", "Photoshop", "Product"],
     cover: djiMavic,
     media: { type: "image", src: djiMavic },
-    link: "https://www.behance.net/gallery/161114431/Product-Render-DJI-Mavic-2-Pro",
+    
   },
   {
     id: "akareplatsen",
@@ -209,7 +209,7 @@ export const projects: Project[] = [
     cover: akareplatsen,
     media: { type: "image", src: akareplatsen },
     span: "wide",
-    link: "https://www.behance.net/gallery/161114009/Performance-Modeling-Akareplatsen-building",
+    
   },
 
 ];
