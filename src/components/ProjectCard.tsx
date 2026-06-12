@@ -45,7 +45,7 @@ export const ProjectCard = ({
           /{project.index}
         </span>
         <span className="mono-font text-[10px] uppercase tracking-[0.25em] text-foreground/70">
-          {project.media.type === "model" ? "● 3D MODEL" : project.media.type === "video" ? "▶ REEL" : "◐ STILL"}
+          {project.media.type === "model" ? "● 3D MODEL" : project.media.type === "video" ? "▶ REEL" : null}
         </span>
       </div>
       {/* Bottom content */}
