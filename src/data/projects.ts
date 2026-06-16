@@ -98,10 +98,28 @@ export const projects: Project[] = [
       { type: "image", src: gravidrift, alt: "GraviDrift in-game screenshot" },
     ],
   },
-
+  {
+    id: "water-pump-demo",
+    index: "02",
+    title: "Water Pump Demo — Unreal Engine",
+    category: "Interactive Realtime",
+    description:
+      "An Unreal project showcasing an old hand-operated water pump. Inspect it from various angles, hit ANIMATE to see the pump in motion, or toggle X-RAY to peek inside the cylinder and watch the mechanism move the water.",
+    tags: ["Unreal", "Interactive", "Realtime"],
+    cover: waterpump1,
+    media: { type: "image", src: waterpump1 },
+    blocks: [
+      { type: "heading", body: "Water Pump Demo" },
+      { type: "text", body: "An interactive Unreal Engine demo of an old cast-iron hand water pump. Inspect it from various angles." },
+      { type: "image", src: waterpump1, alt: "Water pump in the Unreal scene with ANIMATE and X-RAY controls" },
+      { type: "text", body: "It is possible to animate the pump to see the handle and water in motion, and to use X-RAY to open up the model so you can see straight into the cylinder." },
+      { type: "image", src: waterpump2, alt: "X-ray view revealing the inner piston and water column" },
+      { type: "text", body: "With X-RAY enabled the outer shell turns translucent, exposing the piston, valves and the water-falling inside the pump as the handle is worked." },
+    ],
+  },
   {
     id: "backpack",
-    index: "02",
+    index: "03",
     title: "Backpack Animation",
     category: "Realtime Animation",
     description:
@@ -116,7 +134,7 @@ export const projects: Project[] = [
   },
   {
     id: "building-demo",
-    index: "03",
+    index: "04",
     title: "Building Demo — Unreal Engine 5",
     category: "Architectural Realtime",
     description:
@@ -137,7 +155,7 @@ export const projects: Project[] = [
   },
   {
     id: "dometic",
-    index: "04",
+    index: "05",
     title: "Product Render — Dometic",
     category: "Product Visualisation",
     description:
@@ -156,7 +174,7 @@ export const projects: Project[] = [
   },
   {
     id: "ohe-ok",
-    index: "05",
+    index: "06",
     title: "Product Render — OHE-OK",
     category: "Product Visualisation",
     description:
@@ -175,7 +193,7 @@ export const projects: Project[] = [
   },
   {
     id: "car-glass",
-    index: "06",
+    index: "07",
     title: "Car Glass — Unreal Engine 4",
     category: "Realtime Shader",
     description:
@@ -200,7 +218,7 @@ export const projects: Project[] = [
   },
   {
     id: "unreal-studio",
-    index: "07",
+    index: "08",
     title: "Unreal Project — Studio",
     category: "Realtime Scene",
     description:
@@ -228,7 +246,7 @@ export const projects: Project[] = [
   },
   {
     id: "dji-mavic",
-    index: "08",
+    index: "09",
     title: "Product Render — DJI Mavic 2 Pro",
     category: "Product Visualisation",
     description:
@@ -246,7 +264,7 @@ export const projects: Project[] = [
   },
   {
     id: "akareplatsen",
-    index: "09",
+    index: "10",
     title: "Performance Modeling — Åkareplatsen",
     category: "Architectural Modeling",
     description:
@@ -268,25 +286,6 @@ export const projects: Project[] = [
       { type: "image", src: akare7, alt: "Final shaded building" },
       { type: "image", src: akare8, alt: "Final shaded building" },
       { type: "image", src: akare9, alt: "Final shaded building" },
-    ],
-  },
-  {
-    id: "water-pump-demo",
-    index: "10",
-    title: "Water Pump Demo — Unreal Engine",
-    category: "Interactive Realtime",
-    description:
-      "An Unreal project showcasing an old hand-operated water pump. Orbit around to inspect it from any angle, hit ANIMATE to see the pump in motion, or toggle X-RAY to peek inside the cylinder and watch the mechanism move the water.",
-    tags: ["Unreal", "Interactive", "Realtime"],
-    cover: waterpump1,
-    media: { type: "image", src: waterpump1 },
-    blocks: [
-      { type: "heading", body: "Water Pump Demo" },
-      { type: "text", body: "An interactive Unreal Engine demo of an old cast-iron hand water pump. The viewer can orbit the model freely and study it from every angle." },
-      { type: "image", src: waterpump1, alt: "Water pump in the Unreal scene with ANIMATE and X-RAY controls" },
-      { type: "text", body: "Two on-screen controls drive the experience: ANIMATE plays the pump handle and water motion, and X-RAY opens up the model so you can see straight into the cylinder." },
-      { type: "image", src: waterpump2, alt: "X-ray view revealing the inner piston and water column" },
-      { type: "text", body: "With X-RAY enabled the outer shell turns translucent, exposing the piston, valves and the water column rising and falling inside the pump as the handle is worked." },
     ],
   },
 
