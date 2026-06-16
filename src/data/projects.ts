@@ -40,6 +40,10 @@ import akare6 from "@/assets/behance/akare/a6.png";
 import akare7 from "@/assets/behance/akare/a7.png";
 import akare8 from "@/assets/behance/akare/a8.png";
 import akare9 from "@/assets/behance/akare/a9.png";
+import waterpump1 from "@/assets/behance/waterpump/wp1.png";
+import waterpump2 from "@/assets/behance/waterpump/wp2.png";
+
+
 
 export type ProjectMedia =
   | { type: "image"; src: string }
@@ -264,6 +268,25 @@ export const projects: Project[] = [
       { type: "image", src: akare7, alt: "Final shaded building" },
       { type: "image", src: akare8, alt: "Final shaded building" },
       { type: "image", src: akare9, alt: "Final shaded building" },
+    ],
+  },
+  {
+    id: "water-pump-demo",
+    index: "10",
+    title: "Water Pump Demo — Unreal Engine",
+    category: "Interactive Realtime",
+    description:
+      "An Unreal project showcasing an old hand-operated water pump. Orbit around to inspect it from any angle, hit ANIMATE to see the pump in motion, or toggle X-RAY to peek inside the cylinder and watch the mechanism move the water.",
+    tags: ["Unreal", "Interactive", "Realtime"],
+    cover: waterpump1,
+    media: { type: "image", src: waterpump1 },
+    blocks: [
+      { type: "heading", body: "Water Pump Demo" },
+      { type: "text", body: "An interactive Unreal Engine demo of an old cast-iron hand water pump. The viewer can orbit the model freely and study it from every angle." },
+      { type: "image", src: waterpump1, alt: "Water pump in the Unreal scene with ANIMATE and X-RAY controls" },
+      { type: "text", body: "Two on-screen controls drive the experience: ANIMATE plays the pump handle and water motion, and X-RAY opens up the model so you can see straight into the cylinder." },
+      { type: "image", src: waterpump2, alt: "X-ray view revealing the inner piston and water column" },
+      { type: "text", body: "With X-RAY enabled the outer shell turns translucent, exposing the piston, valves and the water column rising and falling inside the pump as the handle is worked." },
     ],
   },
 
