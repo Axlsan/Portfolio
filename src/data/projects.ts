@@ -42,6 +42,7 @@ import akare8 from "@/assets/behance/akare/a8.png";
 import akare9 from "@/assets/behance/akare/a9.png";
 import waterpump1 from "@/assets/behance/waterpump/wp1.png";
 import waterpump2 from "@/assets/behance/waterpump/wp2.png";
+import waterpump3 from "@/assets/behance/waterpump/wp3.gif.asset.json";
 
 
 
