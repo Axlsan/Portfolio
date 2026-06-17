@@ -184,7 +184,7 @@ const Index = () => {
           </h2>
           <div className="mt-12 flex flex-col md:flex-row md:items-end justify-between gap-8 max-w-3xl">
             <a
-              href="mailto:hello@kaiforge.studio"
+              href="mailto:axel_sanne@hotmail.com"
               className="group inline-flex items-baseline gap-3 mono-font text-2xl md:text-4xl text-foreground hover:text-primary transition-colors"
             >
               axel_sanne@hotmail.com
