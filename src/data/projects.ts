@@ -42,6 +42,7 @@ import akare8 from "@/assets/behance/akare/a8.png";
 import akare9 from "@/assets/behance/akare/a9.png";
 import waterpump1 from "@/assets/behance/waterpump/wp1.png";
 import waterpump2 from "@/assets/behance/waterpump/wp2.png";
+import waterpump3 from "@/assets/behance/waterpump/wp3.gif.asset.json";
 
 
 
@@ -114,6 +115,7 @@ export const projects: Project[] = [
       { type: "image", src: waterpump1, alt: "Water pump in the Unreal scene with ANIMATE and X-RAY controls" },
       { type: "text", body: "It is possible to animate the pump to see the handle and water in motion, and to use X-RAY to open up the model so you can see straight into the cylinder." },
       { type: "image", src: waterpump2, alt: "X-ray view revealing the inner piston and water column" },
+      { type: "image", src: waterpump3.url, alt: "Water pump demo animation" },
       { type: "text", body: "With X-RAY enabled the outer shell turns translucent, exposing the piston, valves and the water-falling inside the pump as the handle is worked." },
     ],
   },

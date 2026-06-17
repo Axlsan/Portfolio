@@ -30,7 +30,7 @@ const Index = () => {
             href="#contact"
             className="mono-font text-[11px] uppercase tracking-[0.25em] border border-border hover:border-primary hover:text-primary px-4 py-2 transition-colors"
           >
-            Available Q3 →
+            Available Now →
           </a>
         </div>
       </header>
@@ -184,14 +184,14 @@ const Index = () => {
           </h2>
           <div className="mt-12 flex flex-col md:flex-row md:items-end justify-between gap-8 max-w-3xl">
             <a
-              href="mailto:hello@kaiforge.studio"
+              href="mailto:axel_sanne@hotmail.com"
               className="group inline-flex items-baseline gap-3 mono-font text-2xl md:text-4xl text-foreground hover:text-primary transition-colors"
             >
-              hello@kaiforge.studio
+              axel_sanne@hotmail.com
               <ArrowUpRight className="w-6 h-6 md:w-8 md:h-8 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
             </a>
             <a
-              href="#"
+              href="https://www.linkedin.com/in/axel-sanne-840782162/"
               className="mono-font text-[11px] uppercase tracking-[0.25em] text-foreground/70 hover:text-primary transition-colors self-end"
             >
               LinkedIn ↗
