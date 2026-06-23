@@ -201,11 +201,11 @@ const Index = () => {
       </section>
 
       {/* === FOOTER === */}
-      <footer className="border-t border-border px-8 md:px-16 py-6 flex flex-col md:flex-row justify-between gap-3 mono-font text-[10px] uppercase tracking-[0.25em] text-foreground/50">
+{/*      <footer className="border-t border-border px-8 md:px-16 py-6 flex flex-col md:flex-row justify-between gap-3 mono-font text-[10px] uppercase tracking-[0.25em] text-foreground/50">
         <span>© 2024 Axel Sanne — built in three.js</span>
         <span>v1.4.2 · last forged 2024.06</span>
       </footer>
-
+*/}
       <ProjectModal project={active} onClose={() => setActive(null)} />
     </div>
   );
