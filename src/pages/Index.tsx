@@ -138,9 +138,9 @@ const Index = () => {
           </div>
           <div className="md:col-span-8 md:pl-12 space-y-6">
             <p className="serif-font text-2xl md:text-3xl leading-snug text-foreground/90">
-              I build the bridge between art direction and the GPU. From procedural
-              terrain systems to character-pipeline tooling, my work lives where
-              creative ambition meets frame-budget reality.
+              I build the bridge between art direction and production. From procedural
+              terrain systems to animation-pipeline tooling, my work lives where 
+              creative ambition meets production reality.
             </p>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-12 pt-8 border-t border-border">
               <Stat k="Years" v="08" />
@@ -150,21 +150,30 @@ const Index = () => {
             </div>
             <div className="grid md:grid-cols-2 gap-8 mt-8">
               <div>
-                <div className="hud-label mb-3">Disciplines</div>
+                <div className="hud-label mb-3">Softwares</div>
                 <ul className="mono-font text-sm space-y-1.5 text-foreground/80">
-                  <li>— Realtime shader authoring (HLSL / GLSL)</li>
-                  <li>— FX & simulation (Houdini, EmberGen)</li>
-                  <li>— Character & asset pipelines</li>
-                  <li>— DCC tooling (Python, MaxScript)</li>
+                  <li>— Blender</li>
+                  <li>— Unreal Engine</li>
+                  <li>— 3Ds Max</li>
+                  <li>— Adobe Suite</li>
+                  <li>— AutoCAD</li>
+                  <li>— Revit</li>
+                  <li>— DaVinci Resolve</li>
                 </ul>
               </div>
               <div>
-                <div className="hud-label mb-3">Engines</div>
+                <div className="hud-label mb-3">"Skills"</div>
                 <ul className="mono-font text-sm space-y-1.5 text-foreground/80">
-                  <li>— Unreal Engine 5 (Niagara, MaterialX)</li>
-                  <li>— Unity URP / HDRP</li>
-                  <li>— Three.js / WebGL custom</li>
-                  <li>— Bespoke renderers</li>
+                  <li>— Modeling</li>
+                  <li>— Texturing</li>
+                  <li>— Lighting</li>
+                  <li>— Rigging</li>
+                  <li>— Animation</li>
+                  <li>— Rendering</li>
+                  <li>— Blueprints</li>
+                  <li>— C++</li>
+                  <li>— C#</li>
+                  <li>— Java</li>
                 </ul>
               </div>
             </div>
