@@ -171,6 +171,8 @@ const Index = () => {
                   <li>— Animation</li>
                   <li>— Rendering</li>
                   <li>— Blueprints</li>
+                </ul>
+                <ul className="mono-font text-sm space-y-1.5 text-foreground/80">
                   <li>— C++</li>
                   <li>— C#</li>
                   <li>— Java</li>
