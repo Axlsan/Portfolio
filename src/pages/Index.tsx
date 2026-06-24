@@ -180,7 +180,7 @@ const Index = () => {
           <h2 className="display-font text-[clamp(3rem,9vw,9rem)] leading-[0.85]">
             Let's<br />
             <span className="serif-font italic font-normal text-primary">make</span> something<br />
-            molten.
+            together.
           </h2>
           <div className="mt-12 flex flex-col md:flex-row md:items-end justify-between gap-8 max-w-3xl">
             <a
