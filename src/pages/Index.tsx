@@ -148,7 +148,7 @@ const Index = () => {
               <Stat k="Shipped" v="24" />
               <Stat k="Coffee/day" v="∞" />
             </div>
-            <div className="grid md:grid-cols-3 gap-4 mt-8">
+            <div className="grid md:grid-cols-2 gap-4 mt-8">
               <div>
                 <div className="hud-label mb-3">Softwares</div>
                 <ul className="mono-font text-sm space-y-1.5 text-foreground/80">
@@ -161,8 +161,8 @@ const Index = () => {
                   <li>— DaVinci Resolve</li>
                 </ul>
               </div>
-              <div>
-                <div className="hud-label mb-3">"Skills"</div>
+              <div className="grid md:grid-cols-2 gap-4 mt-8">
+                <div className="hud-label mb-3">Skills</div>
                 <ul className="mono-font text-sm space-y-1.5 text-foreground/80">
                   <li>— Modeling</li>
                   <li>— Texturing</li>
