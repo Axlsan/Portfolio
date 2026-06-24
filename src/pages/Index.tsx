@@ -161,7 +161,7 @@ const Index = () => {
                   <li>— DaVinci Resolve</li>
                 </ul>
               </div>
-              <div className="md:col-span-2">
+              <div>
                 <div className="hud-label mb-3">"Skills"</div>
                 <ul className="mono-font text-sm space-y-1.5 text-foreground/80">
                   <li>— Modeling</li>
@@ -172,13 +172,13 @@ const Index = () => {
                   <li>— Rendering</li>
                   <li>— Blueprints</li>
                 </ul>
-                <div>
-                  <ul className="mono-font text-sm space-y-1.5 text-foreground/80">
-                    <li>— C++</li>
-                    <li>— C#</li>
-                    <li>— Java</li>
-                  </ul>
-                </div>
+              </div>
+              <div>
+                <ul className="mono-font text-sm space-y-1.5 text-foreground/80">
+                  <li>— C++</li>
+                  <li>— C#</li>
+                  <li>— Java</li>
+                </ul>
               </div>
             </div>
           </div>
