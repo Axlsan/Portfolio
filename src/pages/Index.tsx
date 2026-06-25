@@ -142,12 +142,14 @@ const Index = () => {
               terrain systems to animation-pipeline tooling, my work lives where 
               creative ambition meets production reality.
             </p>
+            {/*
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-12 pt-8 border-t border-border">
               <Stat k="Years" v="08" />
               <Stat k="Studios" v="11" />
               <Stat k="Shipped" v="24" />
               <Stat k="Coffee/day" v="∞" />
             </div>
+            */}
             <div className="grid md:grid-cols-2 gap-4 mt-8">
               <div>
                 <div className="hud-label mb-3">Softwares</div>
