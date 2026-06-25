@@ -150,7 +150,7 @@ const Index = () => {
               <Stat k="Coffee/day" v="∞" />
             </div>
             */}
-            <div className="grid md:grid-cols-2 gap-4 mt-8">
+            <div className="grid md:grid-cols-2 gap-3 mt-8">
               <div>
                 <div className="hud-label mb-3">Softwares</div>
                 <ul className="mono-font text-sm space-y-1.5 text-foreground/80">
@@ -165,7 +165,7 @@ const Index = () => {
               </div>
               <div>
                 <div className="hud-label mb-3">Skills</div>
-                <div className="grid grid-cols-2 gap-2">
+                <div className="grid grid-cols-2 gap-1">
                   <ul className="mono-font text-sm space-y-1.5 text-foreground/80">
                     <li>— Modeling</li>
                     <li>— Texturing</li>
@@ -173,6 +173,7 @@ const Index = () => {
                     <li>— Rigging</li>
                     <li>— Animation</li>
                     <li>— Rendering</li>
+                    <li>— Motion Capture</li>
                   </ul>
                   <ul className="mono-font text-sm space-y-1.5 text-foreground/80">
                     <li>— Blueprints</li>
