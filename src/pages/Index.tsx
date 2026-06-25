@@ -161,24 +161,24 @@ const Index = () => {
                   <li>— DaVinci Resolve</li>
                 </ul>
               </div>
-              <div className="grid md:grid-cols-2 gap-1 mt-0">
-                <div className="hud-label mb-3">Skills</div>
-                <ul className="mono-font text-sm space-y-1.5 text-foreground/80">
-                  <li>— Modeling</li>
-                  <li>— Texturing</li>
-                  <li>— Lighting</li>
-                  <li>— Rigging</li>
-                  <li>— Animation</li>
-                  <li>— Rendering</li>
-                  <li>— Blueprints</li>
-                </ul>
-              </div>
               <div>
-                <ul className="mono-font text-sm space-y-1.5 text-foreground/80">
-                  <li>— C++</li>
-                  <li>— C#</li>
-                  <li>— Java</li>
-                </ul>
+                <div className="hud-label mb-3">Skills</div>
+                <div className="grid grid-cols-2 gap-2">
+                  <ul className="mono-font text-sm space-y-1.5 text-foreground/80">
+                    <li>— Modeling</li>
+                    <li>— Texturing</li>
+                    <li>— Lighting</li>
+                    <li>— Rigging</li>
+                    <li>— Animation</li>
+                    <li>— Rendering</li>
+                  </ul>
+                  <ul className="mono-font text-sm space-y-1.5 text-foreground/80">
+                    <li>— Blueprints</li>
+                    <li>— C++</li>
+                    <li>— C#</li>
+                    <li>— Java</li>
+                  </ul>
+                </div>
               </div>
             </div>
           </div>
