@@ -136,7 +136,7 @@ const Index = () => {
               <span className="serif-font italic font-normal text-primary">compiler.</span>
             </h2>
           </div>
-          <div className="md:col-span-8 md:pl-12 space-y-6">
+          <div className="md:col-span-8 md:pl-12 space-y-4">
             <p className="serif-font text-2xl md:text-3xl leading-snug text-foreground/90">
               I build the bridge between art direction and production. From procedural
               terrain systems to animation-pipeline tooling, my work lives where 
@@ -150,7 +150,7 @@ const Index = () => {
               <Stat k="Coffee/day" v="∞" />
             </div>
             */}
-            <div className="grid md:grid-cols-2 gap-2 mt-8">
+            <div className="grid md:grid-cols-2 gap-3 mt-8">
               <div>
                 <div className="hud-label mb-3">Softwares</div>
                 <ul className="mono-font text-sm space-y-1.5 text-foreground/80">
@@ -165,7 +165,7 @@ const Index = () => {
               </div>
               <div>
                 <div className="hud-label mb-3">Skills</div>
-                <div className="grid grid-cols-2 gap-1">
+                <div className="grid grid-cols-2 gap-2">
                   <ul className="mono-font text-sm space-y-1.5 text-foreground/80">
                     <li>— Modeling</li>
                     <li>— Texturing</li>
