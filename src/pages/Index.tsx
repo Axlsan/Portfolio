@@ -90,13 +90,17 @@ const Index = () => {
         <div className="flex animate-marquee whitespace-nowrap mono-font text-sm uppercase tracking-[0.3em]">
           {Array.from({ length: 4 }).map((_, i) => (
             <div key={i} className="flex items-center gap-10 mr-10 text-foreground/60">
-              <span>HLSL</span><span className="text-primary">●</span>
-              <span>Houdini</span><span className="text-primary">●</span>
-              <span>Unreal Engine 5</span><span className="text-primary">●</span>
-              <span>Substance</span><span className="text-primary">●</span>
-              <span>Three.js</span><span className="text-primary">●</span>
-              <span>Python Tooling</span><span className="text-primary">●</span>
-              <span>Vertex Animation</span><span className="text-primary">●</span>
+              <span>Modeling</span><span className="text-primary">●</span>
+              <span>Texturing</span><span className="text-primary">●</span>
+              <span>Lighting</span><span className="text-primary">●</span>
+              <span>Rigging</span><span className="text-primary">●</span>
+              <span>Animation</span><span className="text-primary">●</span>
+              <span>Rendering</span><span className="text-primary">●</span>
+              <span>Motion Capture</span><span className="text-primary">●</span>
+              <span>Blueprints</span><span className="text-primary">●</span>
+              <span>C++</span><span className="text-primary">●</span>
+              <span>C#</span><span className="text-primary">●</span>
+              <span>Java</span><span className="text-primary">●</span>
             </div>
           ))}
         </div>
