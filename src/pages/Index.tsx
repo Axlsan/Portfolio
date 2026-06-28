@@ -64,8 +64,8 @@ const Index = () => {
                 <span className="serif-font italic font-normal text-primary">realtime</span> WORLDS
               </h1>
               <p className="mt-6 max-w-xl serif-font italic text-lg md:text-xl text-foreground/80 leading-snug">
-                Shaders, simulation pipelines and tooling for studios that ship.
-                Eight years between the artist and the engine.
+                Rendering, animation pipelines and tooling for studios.
+                Four years between the artist and the engine.
               </p>
             </motion.div>
           </div>
