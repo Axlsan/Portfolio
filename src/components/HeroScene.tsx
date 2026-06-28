@@ -1,7 +1,25 @@
-import { useRef, useMemo, useEffect } from "react";
+import { Component, ReactNode, Suspense, useRef, useMemo, useEffect } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { Float, Environment, Sparkles, useAnimations, useGLTF } from "@react-three/drei";
 import * as THREE from "three";
+
+class ModelErrorBoundary extends Component<{ fallback: ReactNode }, { hasError: boolean }> {
+  state = { hasError: false };
+
+  static getDerivedStateFromError() {
+    return { hasError: true };
+  }
+
+  componentDidUpdate(prevProps: { fallback: ReactNode }) {
+    if (prevProps.fallback !== this.props.fallback && this.state.hasError) {
+      this.setState({ hasError: false });
+    }
+  }
+
+  render() {
+    return this.state.hasError ? this.props.fallback : this.props.children;
+  }
+}
 
 const GltfCharacter = ({
   modelUrl,
@@ -13,7 +31,7 @@ const GltfCharacter = ({
   const group = useRef<THREE.Group>(null);
   const { scene, animations } = useGLTF(modelUrl);
   const { actions } = useAnimations(animations, group);
-  const modelScene = useMemo(() => scene.clone(), [scene]);
+  const modelScene = useMemo(() => scene.clone(true), [scene]);
 
   useEffect(() => {
     const action = actions[animations[0]?.name ?? ""];
@@ -42,6 +60,29 @@ const GltfCharacter = ({
     </Float>
   );
 };
+
+const WavingMan = () => (
+  <Float speed={0.8} rotationIntensity={0.08} floatIntensity={0.2}>
+    <group position={[0, -0.9, 0]} rotation={[0, -0.75, 0]}>
+      <mesh position={[0, 0.85, 0]}>
+        <sphereGeometry args={[0.18, 16, 16]} />
+        <meshStandardMaterial color="#f2d4b7" />
+      </mesh>
+      <mesh position={[0, 0.35, 0]}>
+        <cylinderGeometry args={[0.16, 0.2, 0.5, 12]} />
+        <meshStandardMaterial color="#2a2a3a" />
+      </mesh>
+      <mesh position={[-0.18, 0.05, 0]} rotation={[0, 0, 0.35]}>
+        <cylinderGeometry args={[0.05, 0.05, 0.35, 12]} />
+        <meshStandardMaterial color="#f2d4b7" />
+      </mesh>
+      <mesh position={[0.18, 0.05, 0]} rotation={[0, 0, -0.35]}>
+        <cylinderGeometry args={[0.05, 0.05, 0.35, 12]} />
+        <meshStandardMaterial color="#f2d4b7" />
+      </mesh>
+    </group>
+  </Float>
+);
 
 const Shell = () => {
   const mesh = useRef<THREE.Mesh>(null);
@@ -133,12 +174,18 @@ const FloatingShards = () => {
 };
 
 export const HeroScene = ({
-  modelUrl = "/models/character.gltf",
+  modelUrl,
   modelScale = 1,
 }: {
   modelUrl?: string;
   modelScale?: number;
 }) => {
+  const resolvedModelUrl = useMemo(() => {
+    if (!modelUrl) return "";
+    if (/^https?:\/\//.test(modelUrl)) return modelUrl;
+    return `${import.meta.env.BASE_URL}${modelUrl.replace(/^\//, "")}`;
+  }, [modelUrl]);
+
   return (
     <Canvas
       camera={{ position: [0, 0, 5], fov: 45 }}
@@ -153,7 +200,15 @@ export const HeroScene = ({
       <pointLight position={[-4, -2, -2]} intensity={1.5} color="#ff3a1a" />
       <pointLight position={[3, 4, 2]} intensity={0.6} color="#ffd9b3" />
 
-      <GltfCharacter modelUrl={modelUrl} modelScale={modelScale} />
+      {resolvedModelUrl ? (
+        <ModelErrorBoundary fallback={<WavingMan />}>
+          <Suspense fallback={<WavingMan />}>
+            <GltfCharacter modelUrl={resolvedModelUrl} modelScale={modelScale} />
+          </Suspense>
+        </ModelErrorBoundary>
+      ) : (
+        <WavingMan />
+      )}
       <Shell />
       <FloatingShards />
 
