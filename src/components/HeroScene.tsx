@@ -41,26 +41,15 @@ const GltfCharacter = ({
     }
   }, [actions, animations]);
 
-  const basePosition = useMemo(() => ({ x: 0, y: -1.5, z: 0.15 }), []);
-  const baseRotation = useMemo(() => ({ x: 0.12, y: -2.1468, z: 0 }), []);
-
-  useFrame((state) => {
-    if (!group.current) return;
-
-    const t = state.clock.getElapsedTime();
-    group.current.position.y = basePosition.y + Math.sin(t * 8) * 0.04;
-    group.current.position.z = basePosition.z + Math.sin(t * 16) * 0.01;
-    group.current.rotation.y = baseRotation.y + Math.sin(t * 8) * 0.08;
-    group.current.rotation.x = baseRotation.x + Math.sin(t * 12) * 0.02;
-    group.current.rotation.z = baseRotation.z + 0.03 * Math.sin(t * 6);
-  });
+  const basePosition = [0, -1.5, 0.15] as const;
+  const baseRotation = [0, -2.1468, 0] as const;
 
   return (
-    <Float speed={0.8} rotationIntensity={0.08} floatIntensity={0.2}>
-      <group ref={group} scale={modelScale} position={[basePosition.x, basePosition.y, basePosition.z]} rotation={[baseRotation.x, baseRotation.y, baseRotation.z]}>
+    <group ref={group} scale={modelScale} position={basePosition} rotation={baseRotation}>
+      <Float speed={0.8} rotationIntensity={0.08} floatIntensity={0.2}>
         <primitive object={modelScene} />
-      </group>
-    </Float>
+      </Float>
+    </group>
   );
 };
 
