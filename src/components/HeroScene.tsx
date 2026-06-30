@@ -28,31 +28,31 @@ const GltfCharacter = ({
   modelUrl: string;
   modelScale?: number;
 }) => {
+  const modelRef = useRef<THREE.Group>(null);
   const { scene, animations } = useGLTF(modelUrl);
   const modelScene = useMemo(() => scene.clone(true), [scene]);
-  const { actions } = useAnimations(animations, modelScene);
+  const { actions } = useAnimations(animations, modelRef);
 
   useEffect(() => {
-    console.log("GLTF animations:", animations.map((clip) => clip.name));
     const clip = animations[0];
     const action = clip ? actions[clip.name] : Object.values(actions)[0];
     if (action) {
       action.reset();
       action.setLoop(THREE.LoopRepeat, Infinity);
       action.play();
-      console.log("Action playing", clip?.name, action.getEffectiveWeight());
+      console.log("Playing animation", clip?.name, "weight", action.getEffectiveWeight());
     } else {
       console.warn("No animation action found for GLTF", Object.keys(actions));
     }
-  }, [actions, animations, modelScene]);
+  }, [actions, animations]);
 
-  const basePosition = [0, -2.7, 0.15] as const;
+  const basePosition = [0, -2.4, 0.15] as const;
   const baseRotation = [0, -2.1468, 0] as const;
 
   return (
     <group position={basePosition} rotation={baseRotation}>
       <Float speed={0.8} rotationIntensity={0.08} floatIntensity={0.2}>
-        <group ref={base} scale={modelScale}>
+        <group ref={modelRef} scale={modelScale}>
           <primitive object={modelScene} />
         </group>
       </Float>
