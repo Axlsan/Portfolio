@@ -1,6 +1,6 @@
 import { Component, ReactNode, Suspense, useRef, useMemo, useEffect } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
-import { Float, Environment, Sparkles, useAnimations, useGLTF } from "@react-three/drei";
+import { Float, Environment, Sparkles, useGLTF } from "@react-three/drei";
 import * as THREE from "three";
 
 class ModelErrorBoundary extends Component<{ fallback: ReactNode }, { hasError: boolean }> {
@@ -30,23 +30,37 @@ const GltfCharacter = ({
 }) => {
   const wrapper = useRef<THREE.Group>(null);
   const inner = useRef<THREE.Group>(null);
+  const mixer = useRef<THREE.AnimationMixer | null>(null);
   const { scene, animations } = useGLTF(modelUrl);
-  const { actions } = useAnimations(animations, inner);
   const modelScene = useMemo(() => scene.clone(true), [scene]);
 
   useEffect(() => {
+    if (!inner.current) return;
+    mixer.current = new THREE.AnimationMixer(inner.current);
     console.log("GLTF animations:", animations.map((clip) => clip.name));
+
     const clip = animations[0];
-    const action = clip ? actions[clip.name] ?? Object.values(actions)[0] : undefined;
-    if (action) {
-      action.reset();
-      action.setLoop(THREE.LoopRepeat, Infinity);
-      action.paused = false;
-      action.play();
-    } else {
-      console.warn("No animation action found for GLTF", Object.keys(actions));
+    if (!clip) {
+      console.warn("No animation clip found in GLTF");
+      return;
     }
-  }, [actions, animations]);
+
+    const action = mixer.current.clipAction(clip);
+    action.reset();
+    action.setLoop(THREE.LoopRepeat, Infinity);
+    action.play();
+
+    return () => {
+      mixer.current?.stopAllAction();
+      mixer.current = null;
+    };
+  }, [animations]);
+
+  useFrame((state, delta) => {
+    if (mixer.current) {
+      mixer.current.update(delta);
+    }
+  });
 
   const basePosition = [0, -4, 0.15] as const;
   const baseRotation = [0, -2.1468, 0] as const;
