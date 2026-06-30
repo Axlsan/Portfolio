@@ -34,9 +34,10 @@ const GltfCharacter = ({
   const modelScene = useMemo(() => scene.clone(true), [scene]);
 
   useEffect(() => {
-    const action = actions[animations[0]?.name ?? ""];
+    const action = Object.values(actions)[0];
     if (action) {
       action.reset();
+      action.setLoop(THREE.LoopRepeat, Infinity);
       action.play();
     }
   }, [actions, animations]);
