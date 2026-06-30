@@ -1,6 +1,6 @@
 import { Component, ReactNode, Suspense, useRef, useMemo, useEffect } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
-import { Float, Environment, Sparkles, useAnimations, useGLTF } from "@react-three/drei";
+import { Float, Environment, Sparkles, useGLTF } from "@react-three/drei";
 import * as THREE from "three";
 
 class ModelErrorBoundary extends Component<{ fallback: ReactNode }, { hasError: boolean }> {
@@ -28,32 +28,47 @@ const GltfCharacter = ({
   modelUrl: string;
   modelScale?: number;
 }) => {
-  const base = useRef<THREE.Group>(null);
+  const group = useRef<THREE.Group>(null);
+  const mixer = useRef<THREE.AnimationMixer | null>(null);
   const { scene, animations } = useGLTF(modelUrl);
-  const { actions } = useAnimations(animations, base);
   const modelScene = useMemo(() => scene.clone(true), [scene]);
 
   useEffect(() => {
+    if (!modelScene) return;
+    mixer.current = new THREE.AnimationMixer(modelScene);
     console.log("GLTF animations:", animations.map((clip) => clip.name));
+
     const clip = animations[0];
-    const action = clip ? actions[clip.name] : Object.values(actions)[0];
-    if (action) {
-      action.reset();
-      action.setLoop(THREE.LoopRepeat, Infinity);
-      action.play();
-      console.log("Action playing", clip?.name, action.getEffectiveWeight());
-    } else {
-      console.warn("No animation action found for GLTF", Object.keys(actions));
+    if (!clip) {
+      console.warn("No animation clip found in GLTF");
+      return;
     }
-  }, [actions, animations]);
+
+    console.log("Clip tracks:", clip.tracks.length, clip.tracks.slice(0, 20).map((track) => track.name));
+
+    const action = mixer.current.clipAction(clip);
+    action.reset();
+    action.enabled = true;
+    action.setLoop(THREE.LoopRepeat, Infinity);
+    action.play();
+
+    return () => {
+      mixer.current?.stopAllAction();
+      mixer.current = null;
+    };
+  }, [animations, modelScene]);
+
+  useFrame((state, delta) => {
+    mixer.current?.update(delta);
+  });
 
   const basePosition = [0, -2.7, 0.15] as const;
   const baseRotation = [0, -2.1468, 0] as const;
 
   return (
-    <group position={basePosition} rotation={baseRotation}>
+    <group ref={group} position={basePosition} rotation={baseRotation}>
       <Float speed={0.8} rotationIntensity={0.08} floatIntensity={0.2}>
-        <group ref={base} scale={modelScale}>
+        <group scale={modelScale}>
           <primitive object={modelScene} />
         </group>
       </Float>
