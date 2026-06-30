@@ -54,7 +54,7 @@ const GltfCharacter = ({
 
   return (
     <Float speed={0.8} rotationIntensity={0.08} floatIntensity={0.2}>
-      <group ref={group} scale={modelScale} position={[0, -1.2, 0.15]} rotation={[0, 1.1519, 0]}>
+      <group ref={group} scale={modelScale} position={[0, -1.5, 0.15]} rotation={[0, -2.1468, 0]}>
         <primitive object={modelScene} />
       </group>
     </Float>
