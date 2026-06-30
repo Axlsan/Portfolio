@@ -1,6 +1,6 @@
 import { Component, ReactNode, Suspense, useRef, useMemo, useEffect } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
-import { Float, Environment, Sparkles, useGLTF } from "@react-three/drei";
+import { Float, Environment, Sparkles, useAnimations, useGLTF } from "@react-three/drei";
 import * as THREE from "three";
 
 class ModelErrorBoundary extends Component<{ fallback: ReactNode }, { hasError: boolean }> {
@@ -28,48 +28,31 @@ const GltfCharacter = ({
   modelUrl: string;
   modelScale?: number;
 }) => {
-  const wrapper = useRef<THREE.Group>(null);
-  const inner = useRef<THREE.Group>(null);
-  const mixer = useRef<THREE.AnimationMixer | null>(null);
+  const group = useRef<THREE.Group>(null);
   const { scene, animations } = useGLTF(modelUrl);
-  const modelScene = useMemo(() => scene.clone(true), [scene]);
+  const { actions } = useAnimations(animations, group);
 
   useEffect(() => {
-    if (!inner.current) return;
-    mixer.current = new THREE.AnimationMixer(inner.current);
     console.log("GLTF animations:", animations.map((clip) => clip.name));
-
     const clip = animations[0];
-    if (!clip) {
-      console.warn("No animation clip found in GLTF");
-      return;
+    const action = clip ? actions[clip.name] : Object.values(actions)[0];
+    if (action) {
+      action.reset();
+      action.setLoop(THREE.LoopRepeat, Infinity);
+      action.play();
+    } else {
+      console.warn("No animation action found for GLTF", Object.keys(actions));
     }
-
-    const action = mixer.current.clipAction(clip);
-    action.reset();
-    action.setLoop(THREE.LoopRepeat, Infinity);
-    action.play();
-
-    return () => {
-      mixer.current?.stopAllAction();
-      mixer.current = null;
-    };
-  }, [animations]);
-
-  useFrame((state, delta) => {
-    if (mixer.current) {
-      mixer.current.update(delta);
-    }
-  });
+  }, [actions, animations]);
 
   const basePosition = [0, -4, 0.15] as const;
   const baseRotation = [0, -2.1468, 0] as const;
 
   return (
-    <group ref={wrapper} position={basePosition} rotation={baseRotation}>
+    <group position={basePosition} rotation={baseRotation}>
       <Float speed={0.8} rotationIntensity={0.08} floatIntensity={0.2}>
-        <group ref={inner} scale={modelScale}>
-          <primitive object={modelScene} />
+        <group scale={modelScale}>
+          <primitive object={scene} />
         </group>
       </Float>
     </group>
