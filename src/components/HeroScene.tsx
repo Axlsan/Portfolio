@@ -34,8 +34,8 @@ const GltfCharacter = ({
   const modelScene = useMemo(() => scene.clone(true), [scene]);
 
   useEffect(() => {
-    if (!modelScene) return;
-    mixer.current = new THREE.AnimationMixer(modelScene);
+    if (!group.current) return;
+    mixer.current = new THREE.AnimationMixer(group.current);
     console.log("GLTF animations:", animations.map((clip) => clip.name));
 
     const clip = animations[0];
@@ -44,11 +44,13 @@ const GltfCharacter = ({
       return;
     }
 
-    console.log("Clip tracks:", clip.tracks.length, clip.tracks.slice(0, 20).map((track) => track.name));
-
     const action = mixer.current.clipAction(clip);
+    if (!action) {
+      console.warn("Failed to create action for clip", clip.name);
+      return;
+    }
+
     action.reset();
-    action.enabled = true;
     action.setLoop(THREE.LoopRepeat, Infinity);
     action.play();
 
@@ -56,13 +58,13 @@ const GltfCharacter = ({
       mixer.current?.stopAllAction();
       mixer.current = null;
     };
-  }, [animations, modelScene]);
+  }, [animations]);
 
   useFrame((state, delta) => {
     mixer.current?.update(delta);
   });
 
-  const basePosition = [0, -2.7, 0.15] as const;
+  const basePosition = [0, -3.2, 0.15] as const;
   const baseRotation = [0, -2.1468, 0] as const;
 
   return (
