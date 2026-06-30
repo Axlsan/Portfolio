@@ -28,9 +28,10 @@ const GltfCharacter = ({
   modelUrl: string;
   modelScale?: number;
 }) => {
-  const group = useRef<THREE.Group>(null);
+  const wrapper = useRef<THREE.Group>(null);
+  const inner = useRef<THREE.Group>(null);
   const { scene, animations } = useGLTF(modelUrl);
-  const { actions } = useAnimations(animations, group);
+  const { actions } = useAnimations(animations, inner);
   const modelScene = useMemo(() => scene.clone(true), [scene]);
 
   useEffect(() => {
@@ -43,17 +44,17 @@ const GltfCharacter = ({
       action.paused = false;
       action.play();
     } else {
-      console.warn("No animation action found for GLTF", actions);
+      console.warn("No animation action found for GLTF", Object.keys(actions));
     }
   }, [actions, animations]);
 
-  const basePosition = [0, -2.5, 0.15] as const;
+  const basePosition = [0, -4, 0.15] as const;
   const baseRotation = [0, -2.1468, 0] as const;
 
   return (
-    <group position={basePosition} rotation={baseRotation}>
+    <group ref={wrapper} position={basePosition} rotation={baseRotation}>
       <Float speed={0.8} rotationIntensity={0.08} floatIntensity={0.2}>
-        <group ref={group} scale={modelScale}>
+        <group ref={inner} scale={modelScale}>
           <primitive object={modelScene} />
         </group>
       </Float>
