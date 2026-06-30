@@ -2,7 +2,6 @@ import { Component, ReactNode, Suspense, useRef, useMemo, useEffect } from "reac
 import { Canvas, useFrame } from "@react-three/fiber";
 import { Float, Environment, Sparkles, useAnimations, useGLTF } from "@react-three/drei";
 import * as THREE from "three";
-import { SkeletonUtils } from "three/examples/jsm/utils/SkeletonUtils";
 
 class ModelErrorBoundary extends Component<{ fallback: ReactNode }, { hasError: boolean }> {
   state = { hasError: false };
@@ -32,7 +31,7 @@ const GltfCharacter = ({
   const group = useRef<THREE.Group>(null);
   const { scene, animations } = useGLTF(modelUrl);
   const { actions } = useAnimations(animations, group);
-  const modelScene = useMemo(() => SkeletonUtils.clone(scene), [scene]);
+  const modelScene = useMemo(() => scene.clone(true), [scene]);
 
   useEffect(() => {
     console.log("GLTF animations:", animations.map((clip) => clip.name));
