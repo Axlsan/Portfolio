@@ -41,7 +41,7 @@ const GltfCharacter = ({
     }
   }, [actions, animations]);
 
-  const basePosition = [0, -1.5, 0.15] as const;
+  const basePosition = [0, -1000, 0.15] as const;
   const baseRotation = [0, -2.1468, 0] as const;
 
   return (
