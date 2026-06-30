@@ -28,14 +28,23 @@ const GltfCharacter = ({
   modelUrl: string;
   modelScale?: number;
 }) => {
-  const group = useRef<THREE.Group>(null);
   const { scene, animations } = useGLTF(modelUrl);
-  const { actions } = useAnimations(animations, group);
+  const { actions } = useAnimations(animations, scene);
+
+  const preferredClipName = useMemo(() => {
+    const names = animations.map((clip) => clip.name);
+    const exactIdle = names.find((name) => name.toLowerCase() === "idle");
+    const fuzzyIdle = names.find((name) => name.toLowerCase().includes("idle"));
+    return exactIdle ?? fuzzyIdle ?? names[0];
+  }, [animations]);
 
   useEffect(() => {
     console.log("GLTF animations:", animations.map((clip) => clip.name));
-    const clip = animations[0];
-    const action = clip ? actions[clip.name] : Object.values(actions)[0];
+    const action =
+      (preferredClipName && actions[preferredClipName]) ||
+      (preferredClipName && actions[preferredClipName.toLowerCase()]) ||
+      Object.values(actions)[0];
+
     if (action) {
       action.reset();
       action.setLoop(THREE.LoopRepeat, Infinity);
@@ -43,9 +52,9 @@ const GltfCharacter = ({
     } else {
       console.warn("No animation action found for GLTF", Object.keys(actions));
     }
-  }, [actions, animations]);
+  }, [actions, preferredClipName]);
 
-  const basePosition = [0, -4, 0.15] as const;
+  const basePosition = [0, -2, 0.15] as const;
   const baseRotation = [0, -2.1468, 0] as const;
 
   return (
