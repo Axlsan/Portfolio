@@ -28,9 +28,10 @@ const GltfCharacter = ({
   modelUrl: string;
   modelScale?: number;
 }) => {
+  const base = useRef<THREE.Group>(null);
   const { scene, animations } = useGLTF(modelUrl);
+  const { actions } = useAnimations(animations, base);
   const modelScene = useMemo(() => scene.clone(true), [scene]);
-  const { actions } = useAnimations(animations, modelScene);
 
   useEffect(() => {
     console.log("GLTF animations:", animations.map((clip) => clip.name));
@@ -44,7 +45,7 @@ const GltfCharacter = ({
     } else {
       console.warn("No animation action found for GLTF", Object.keys(actions));
     }
-  }, [actions, animations, modelScene]);
+  }, [actions, animations]);
 
   const basePosition = [0, -2.7, 0.15] as const;
   const baseRotation = [0, -2.1468, 0] as const;
