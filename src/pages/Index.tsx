@@ -50,7 +50,7 @@ const Index = () => {
           {/* Hero copy */}
           <div className="relative z-10 h-full flex flex-col justify-end px-6 md:px-10 pb-12 md:pb-16 pointer-events-none">
             <motion.div
-              initial={{ opacity: 0, y: 40 }}
+              initial={{ opacity: 0, y: 0 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 1, ease: [0.83, 0, 0.17, 1] }}
               className="max-w-5xl"
