@@ -174,7 +174,7 @@ const FloatingShards = () => {
 };
 
 export const HeroScene = ({
-  modelUrl,
+  modelUrl = "models/PorfolioGuy.glb",
   modelScale = 1,
 }: {
   modelUrl?: string;
