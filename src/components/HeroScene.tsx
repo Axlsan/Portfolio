@@ -35,21 +35,27 @@ const GltfCharacter = ({
 
   useEffect(() => {
     console.log("GLTF animations:", animations.map((clip) => clip.name));
-    const action = Object.values(actions)[0];
+    const clip = animations[0];
+    const action = clip ? actions[clip.name] ?? Object.values(actions)[0] : undefined;
     if (action) {
       action.reset();
       action.setLoop(THREE.LoopRepeat, Infinity);
+      action.paused = false;
       action.play();
+    } else {
+      console.warn("No animation action found for GLTF", actions);
     }
   }, [actions, animations]);
 
-  const basePosition = [0, -100, 0.15] as const;
+  const basePosition = [0, -2.5, 0.15] as const;
   const baseRotation = [0, -2.1468, 0] as const;
 
   return (
-    <group ref={group} scale={modelScale} position={basePosition} rotation={baseRotation}>
+    <group position={basePosition} rotation={baseRotation}>
       <Float speed={0.8} rotationIntensity={0.08} floatIntensity={0.2}>
-        <primitive object={modelScene} />
+        <group ref={group} scale={modelScale}>
+          <primitive object={modelScene} />
+        </group>
       </Float>
     </group>
   );
